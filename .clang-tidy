@@ -1,0 +1,14 @@
+---
+Checks: >
+  -*,
+  bugprone-*,
+  google-*,
+  misc-*,
+  performance-*,
+  portability-*,
+  readability-*,
+  -misc-no-recursion,
+  -bugprone-easily-swappable-parameters,
+  -readability-function-cognitive-complexity,
+# Turn all the warnings from the checks above into errors.
+WarningsAsErrors: "*"
