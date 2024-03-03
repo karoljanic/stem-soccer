@@ -4,8 +4,11 @@ namespace game {
 class State {
  public:
   void handleInput();
-  virtual void update() = 0;
-  virtual void draw() = 0;
+  void init();
+  void pause();
+  void resume();
+  virtual void update(float dt) = 0;
+  virtual void draw(float dt) = 0;
   virtual ~State() = default;
 };
 } // namespace game

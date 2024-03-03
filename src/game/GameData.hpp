@@ -1,22 +1,23 @@
 #pragma once
 
 #include "StatesMachine.hpp"
+#include "managers/InputManager.hpp"
+#include "managers/AssetsManager.hpp"
 
 #include <SFML/Graphics.hpp>
-#include <memory>
-
-
 
 namespace game {
 class GameData {
  private:
-  static std::shared_ptr<GameData> gameData;
+  static std::unique_ptr<GameData> gameData;
  public:
   GameData();
-  static std::shared_ptr<GameData> getInstance();
+  static const std::unique_ptr<GameData>& getInstance();
   virtual ~GameData() = default;
 
   StatesMachine machine;
+  AssetsManager assets;
+  InputManager input;
   sf::RenderWindow window;
   sf::Clock clock;
 };

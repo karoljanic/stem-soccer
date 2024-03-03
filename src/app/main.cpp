@@ -1,10 +1,8 @@
-#include "../config/WindowConfig.hpp"
 #include "../football/FootballGame.hpp"
 
 int main() {
-  football::FootballGame
-	  game{config::WindowConfig::WIDTH, config::WindowConfig::HEIGHT, config::WindowConfig::FPS, "Football Simulation"};
-  game.run();
+  std::unique_ptr<game::Game> game = std::make_unique<football::FootballGame>();
+  game->run();
 
   return 0;
 }

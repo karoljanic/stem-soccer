@@ -1,9 +1,11 @@
 #include "GameData.hpp"
 
 namespace game {
+std::unique_ptr<GameData> GameData::gameData = nullptr;
+
 GameData::GameData() {}
 
-std::shared_ptr<GameData> GameData::getInstance() {
+const std::unique_ptr<GameData>& GameData::getInstance() {
   if (GameData::gameData == nullptr) {
 	GameData::gameData = std::make_unique<GameData>();
   }

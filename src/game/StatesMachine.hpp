@@ -10,14 +10,18 @@ class StatesMachine {
  private:
   std::stack<std::unique_ptr<State>> states;
   std::unique_ptr<State> newState;
+  bool addStateFlag;
+  bool removeStateFlag;
+  bool replaceStateFlag;
 
  public:
   StatesMachine();
   ~StatesMachine() = default;
 
-  void addState();
+  void addState(std::unique_ptr<State> state);
   void removeState();
+  void replaceState(std::unique_ptr<State> state);
   void processStateChanges();
-  const std::unique_ptr<State>& getActiveState();
+  const std::unique_ptr<State> &getActiveState();
 };
 } // namespace game
