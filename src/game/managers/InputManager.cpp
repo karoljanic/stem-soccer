@@ -58,7 +58,7 @@ void InputManager::removeEvent(sf::Mouse::Button btn) {
 }
 
 void InputManager::updateEvents() {
-  for (auto key = keys.begin(); key != keys.end();)
+  for (auto key = keys.begin(); key != keys.end();) {
 	if (key->second == InputState::Down) {
 	  key->second = InputState::Pressed;
 	  ++key;
@@ -67,8 +67,9 @@ void InputManager::updateEvents() {
 	} else {
 	  ++key;
 	}
+  }
 
-  for (auto btn = buttons.begin(); btn != buttons.end();)
+  for (auto btn = buttons.begin(); btn != buttons.end();) {
 	if (btn->second == InputState::Down) {
 	  btn->second = InputState::Pressed;
 	  ++btn;
@@ -77,5 +78,6 @@ void InputManager::updateEvents() {
 	} else {
 	  ++btn;
 	}
+  }
 }
 } // namespace game

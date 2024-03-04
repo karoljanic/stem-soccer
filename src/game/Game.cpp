@@ -8,7 +8,9 @@ Game::Game(uint16_t width, uint16_t height, uint16_t fps, const std::string &tit
 }
 
 void Game::run() {
-  float newTime, frameTime, interpolation;
+  float newTime;
+  float frameTime;
+  float interpolation;
 
   float currentTime = GameData::getInstance()->clock.getElapsedTime().asSeconds();
   float accumulator = 0.0F;

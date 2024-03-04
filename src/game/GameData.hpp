@@ -17,7 +17,7 @@ class GameData {
 
   StatesMachine machine;
   AssetsManager assets;
-  InputManager input;
+  InputManager inputs;
   sf::RenderWindow window;
   sf::Clock clock;
 };

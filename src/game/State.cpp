@@ -3,24 +3,29 @@
 
 namespace game {
 void State::handleInput() {
-  sf::Event event;
+  game::GameData::getInstance()->inputs.updateEvents();
 
+  sf::Event event;
   while (GameData::getInstance()->window.pollEvent(event)) {
 	if (event.type == sf::Event::Closed) {
 	  GameData::getInstance()->window.close();
 	}
+
+	if (sf::Event::MouseButtonPressed == event.type) {
+	  GameData::getInstance()->inputs.addEvent(event.mouseButton.button);
+	}
+
+	if (sf::Event::MouseButtonReleased == event.type) {
+	  GameData::getInstance()->inputs.removeEvent(event.mouseButton.button);
+	}
+
+	if (sf::Event::KeyPressed == event.type) {
+	  GameData::getInstance()->inputs.addEvent(event.key.code);
+	}
+
+	if (sf::Event::KeyReleased == event.type) {
+	  GameData::getInstance()->inputs.removeEvent(event.key.code);
+	}
   }
-}
-
-void State::init() {
-
-}
-
-void State::pause() {
-
-}
-
-void State::resume() {
-
 }
 } // namespace game
