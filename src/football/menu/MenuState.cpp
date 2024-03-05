@@ -1,11 +1,12 @@
 #include "MenuState.hpp"
-
-#include <iostream>
+#include "../../config/AssetsConfig.hpp"
+#include "../../config/WindowConfig.hpp"
+#include "../../game/GameData.hpp"
+#include "../simulation/SimulationState.hpp"
 
 namespace football {
 void MenuState::init() {
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::MENU_BACKGROUND_TEXTURE, "menu_background");
-  game::GameData::getInstance()->assets.loadFont(config::AssetsConfig::NORMAL_FONT, "normal_font");
   game::GameData::getInstance()->assets.loadFont(config::AssetsConfig::THIN_FONT, "thin_font");
 
   backgroundTexture = game::GameData::getInstance()->assets.getTexture("menu_background");
@@ -14,11 +15,17 @@ void MenuState::init() {
   const float centerX = static_cast<float>(game::GameData::getInstance()->window.getSize().x) / 2;
   const float centerY = static_cast<float>(game::GameData::getInstance()->window.getSize().y) / 2;
 
-  buttons.push_back(std::make_unique<MenuButton>(sf::Vector2f(centerX, centerY), "Run Simulation",
+  buttons.push_back(std::make_unique<MenuButton>(sf::Vector2f(centerX, centerY),
+												 "Run Simulation",
 												 config::WindowConfig::MEDIUM_FONT_SIZE,
-												 sf::Color::White, "thin_font",
+												 sf::Color::White,
+												 "thin_font",
 												 static_cast<float>(config::WindowConfig::MEDIUM_FONT_SIZE) / 2,
-												 sf::Color::Black, []() { std::cout << "SIMULATION RUN!" << std::endl; }));
+												 sf::Color::Black,
+												 []() {
+												   game::GameData::getInstance()->machine.addState(std::make_unique<
+													   SimulationState>());
+												 }));
 }
 
 void MenuState::pause() {}

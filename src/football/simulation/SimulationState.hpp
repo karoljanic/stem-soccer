@@ -1,17 +1,19 @@
 #pragma once
 
 #include "../../game/State.hpp"
-#include "MenuButton.hpp"
+#include "FootballArena.hpp"
+#include <SFML/Graphics.hpp>
+#include <memory>
 
 namespace football {
-class MenuState : public game::State {
+class SimulationState : public game::State {
  private:
   sf::Texture backgroundTexture;
   sf::Sprite background;
-  std::vector<std::unique_ptr<MenuButton>> buttons;
+  std::unique_ptr<FootballArena> arena;
 
  public:
-  MenuState() = default;
+  SimulationState() = default;
   void init() override;
   void pause() override;
   void resume() override;
