@@ -23,5 +23,13 @@ struct AssetsConfig {
   inline static const std::string ARENA_GRASS_GROUND8_TEXTURE = "../../../assets/football/arena/grass_ground8.png";
   inline static const std::string ARENA_GRASS_GROUND9_TEXTURE = "../../../assets/football/arena/grass_ground9.png";
   inline static const std::string ARENA_GRASS_GROUND10_TEXTURE = "../../../assets/football/arena/grass_ground10.png";
+
+  inline static const std::string BALL_TEXTURE = "../../../assets/football/ball.png";
+
+  inline static const std::string PLAYER1_TEXTURE = "../../../assets/football/footballers/kit1.png";
+  inline static const std::string PLAYER2_TEXTURE = "../../../assets/football/footballers/kit2.png";
+  inline static const std::string PLAYER3_TEXTURE = "../../../assets/football/footballers/kit3.png";
+  inline static const std::string PLAYER4_TEXTURE = "../../../assets/football/footballers/kit4.png";
+  inline static const std::string PLAYER5_TEXTURE = "../../../assets/football/footballers/kit5.png";
 };
-} // namespace config
+}  // namespace config

@@ -12,7 +12,7 @@ struct WindowConfig {
   static constexpr uint16_t LARGE_FONT_SIZE = 35;
   static constexpr float SIMULATION_AREA_BLOCK_WIDTH = 90.0F;
   static constexpr float SIMULATION_AREA_BLOCK_HEIGHT = 52.0F;
-  static constexpr uint16_t FPS = 30;
+  static constexpr uint16_t FPS = 10;
   static constexpr float MAX_FRAME_TIME = 0.25F;
 };
 

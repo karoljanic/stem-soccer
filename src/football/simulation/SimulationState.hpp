@@ -2,6 +2,8 @@
 
 #include "../../game/State.hpp"
 #include "FootballArena.hpp"
+#include "FootballBall.hpp"
+#include "FootballPlayer.hpp"
 #include <SFML/Graphics.hpp>
 #include <memory>
 
@@ -11,6 +13,8 @@ class SimulationState : public game::State {
   sf::Texture backgroundTexture;
   sf::Sprite background;
   std::unique_ptr<FootballArena> arena;
+  std::unique_ptr<FootballBall> ball;
+  std::vector<std::unique_ptr<FootballPlayer>> players;
 
  public:
   SimulationState() = default;
