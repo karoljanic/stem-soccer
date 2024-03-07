@@ -1,5 +1,6 @@
 #include "FootballPlayer.hpp"
 #include "../../config/AssetsConfig.hpp"
+#include "../../config/WindowConfig.hpp"
 #include "../../game/GameData.hpp"
 
 namespace football {
@@ -7,8 +8,8 @@ FootballPlayer::FootballPlayer(const std::string& textureName, const sf::Vector2
   game::GameData::getInstance()->assets.loadTexture(textureName, textureName);
   footballer.setTexture(game::GameData::getInstance()->assets.getTexture(textureName));
   footballer.setPosition(position);
-  footballer.setScale(3.5f, 3.5f);
-  footballer.scale(-1,1);
+  footballer.setScale(config::WindowConfig::SIMULATION_PLAYER_SCALE, config::WindowConfig::SIMULATION_PLAYER_SCALE);
+//  footballer.scale(-1, 1);
 }
 
 void FootballPlayer::update() {
@@ -16,8 +17,11 @@ void FootballPlayer::update() {
   if (animationFrame > 3) {
     animationFrame = 0;
   }
-  footballer.setTextureRect(sf::IntRect(0, 0, 15, 19));
-  footballer.setTextureRect(sf::IntRect(15 * animationFrame, 0, 15, 19));
+  footballer.setTextureRect(
+      sf::IntRect(0, 0, config::WindowConfig::SIMULATION_PLAYER_WIDTH, config::WindowConfig::SIMULATION_PLAYER_HEIGHT));
+  footballer.setTextureRect(sf::IntRect(config::WindowConfig::SIMULATION_PLAYER_WIDTH * animationFrame, 0,
+                                        config::WindowConfig::SIMULATION_PLAYER_WIDTH,
+                                        config::WindowConfig::SIMULATION_PLAYER_HEIGHT));
 }
 
 void FootballPlayer::draw() {

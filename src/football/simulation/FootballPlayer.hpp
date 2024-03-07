@@ -11,7 +11,7 @@ class FootballPlayer {
     uint8_t animationFrame;
 
  public:
-  FootballPlayer(const std::string &textureName, const sf::Vector2f &position);
+  explicit FootballPlayer(const std::string &textureName, const sf::Vector2f &position);
   void update();
   void draw();
 };

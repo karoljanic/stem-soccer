@@ -12,7 +12,7 @@ class FootballArena {
   std::vector<std::unique_ptr<sf::Sprite>> blocks;
 
  public:
-  FootballArena(const sf::Vector2f &centerAnchor);
+  explicit FootballArena(const sf::Vector2f &centerAnchor);
   void update();
   void draw();
 };

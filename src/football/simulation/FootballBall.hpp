@@ -8,7 +8,7 @@ class FootballBall {
   sf::Sprite ball;
 
  public:
-  FootballBall(const sf::Vector2f& position);
+  explicit FootballBall(const sf::Vector2f& position);
   void update();
   void draw();
 };
