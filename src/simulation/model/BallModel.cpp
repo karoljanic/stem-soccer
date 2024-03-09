@@ -1,5 +1,5 @@
 #include "BallModel.hpp"
 
-namespace football {
+namespace simulation {
 BallModel::BallModel() {}
-} // football
+} // simulation

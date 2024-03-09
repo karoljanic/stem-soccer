@@ -2,14 +2,14 @@
 
 #include <cstdint>
 
-namespace football {
-class BallModel {
+namespace simulation {
+class PlayerModel {
  private:
   uint16_t cellX;
   uint16_t cellY;
   uint16_t cellZ;
 
  public:
-  BallModel();
+  PlayerModel();
 };
-}  // namespace football
+}  // namespace simulation

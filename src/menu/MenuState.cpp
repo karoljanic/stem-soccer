@@ -1,10 +1,10 @@
 #include "MenuState.hpp"
-#include "../../config/AssetsConfig.hpp"
-#include "../../config/WindowConfig.hpp"
-#include "../../game/GameData.hpp"
+#include "../game/GameData.hpp"
 #include "../simulation/SimulationState.hpp"
+#include "../config/AssetsConfig.hpp"
+#include "../config/WindowConfig.hpp"
 
-namespace football {
+namespace menu {
 void MenuState::init() {
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::MENU_BACKGROUND_TEXTURE, "menu_background");
   game::GameData::getInstance()->assets.loadFont(config::AssetsConfig::THIN_FONT, "thin_font");
@@ -24,7 +24,7 @@ void MenuState::init() {
 												 sf::Color::Black,
 												 []() {
 												   game::GameData::getInstance()->machine.addState(std::make_unique<
-													   SimulationState>());
+													   simulation::SimulationState>());
 												 }));
 }
 
@@ -46,4 +46,4 @@ void MenuState::draw(float /*dt*/) {
   }
   game::GameData::getInstance()->window.display();
 }
-} // namespace football
+} // namespace menu

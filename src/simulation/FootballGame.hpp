@@ -1,12 +1,10 @@
 #pragma once
 
-#include "../config/WindowConfig.hpp"
 #include "../game/Game.hpp"
-#include "menu/MenuState.hpp"
 
-namespace football {
+namespace simulation {
 class FootballGame : public game::Game {
  public:
   FootballGame();
 };
-} // namespace football
+} // namespace simulation

@@ -6,7 +6,7 @@
 #include <cstdint>
 #include <vector>
 
-namespace football {
+namespace simulation {
 class MatchModel {
  private:
   uint16_t gridWidth;
@@ -19,4 +19,4 @@ class MatchModel {
 
   MatchModel(uint16_t width, uint16_t length, uint16_t height);
 };
-}  // namespace football
+}  // namespace simulation

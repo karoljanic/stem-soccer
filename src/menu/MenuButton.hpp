@@ -4,7 +4,7 @@
 #include <memory>
 #include <functional>
 
-namespace football {
+namespace menu {
 class MenuButton {
  private:
   std::unique_ptr<sf::RectangleShape> background;
@@ -24,4 +24,4 @@ class MenuButton {
   void update();
   void draw();
 };
-} // namespace football
+} // namespace menu

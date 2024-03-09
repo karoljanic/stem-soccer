@@ -1,8 +1,8 @@
 #include "SimulationState.hpp"
-#include "../../config/AssetsConfig.hpp"
-#include "../../game/GameData.hpp"
+#include "../config/AssetsConfig.hpp"
+#include "../game/GameData.hpp"
 
-namespace football {
+namespace simulation {
 void SimulationState::init() {
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::ARENA_BACKGROUND_TEXTURE, "simulation_background");
 
@@ -60,4 +60,4 @@ void SimulationState::draw(float dt) {
   ball->draw();
   game::GameData::getInstance()->window.display();
 }
-}  // namespace football
+}  // namespace simulation

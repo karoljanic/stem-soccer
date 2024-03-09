@@ -1,9 +1,9 @@
 #pragma once
 
-#include "../../game/State.hpp"
+#include "../game/State.hpp"
 #include "MenuButton.hpp"
 
-namespace football {
+namespace menu {
 class MenuState : public game::State {
  private:
   sf::Texture backgroundTexture;
@@ -18,4 +18,4 @@ class MenuState : public game::State {
   void update(float dt) override;
   void draw(float dt) override;
 };
-} // namespace football
+} // namespace menu

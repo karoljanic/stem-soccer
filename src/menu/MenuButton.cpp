@@ -1,10 +1,10 @@
 #include "MenuButton.hpp"
-#include "../../game/GameData.hpp"
+#include "../game/GameData.hpp"
 
 #include <utility>
 #include <iostream>
 
-namespace football {
+namespace menu {
 MenuButton::MenuButton(sf::Vector2f centerAnchor,
 					   const std::string &textToDisplay,
 					   unsigned int fontSize,
@@ -60,4 +60,4 @@ void MenuButton::draw() {
   game::GameData::getInstance()->window.draw(*text);
 }
 
-} // namespace football
+} // namespace menu
