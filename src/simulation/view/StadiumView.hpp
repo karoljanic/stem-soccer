@@ -6,10 +6,13 @@
 namespace simulation {
 class StadiumView {
  private:
+  sf::Texture backgroundTexture;
+  sf::Sprite background;
   std::vector<std::unique_ptr<sf::Sprite>> blocks;
 
  public:
-  StadiumView(const sf::Vector2f &position);
+  StadiumView() = default;
+  void init(const sf::Vector3f &position);
   void update();
   void draw();
 };

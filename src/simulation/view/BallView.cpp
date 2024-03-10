@@ -4,10 +4,10 @@
 #include "../../config/SimulationConfig.hpp"
 
 namespace simulation {
-BallView::BallView(const sf::Vector2f &position) {
+void BallView::init(const sf::Vector3f &position) {
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::BALL_TEXTURE, "ball");
   ball.setTexture(game::GameData::getInstance()->assets.getTexture("ball"));
-  ball.setPosition(position);
+  ball.setPosition(sf::Vector2f(position.x, position.y));
 
   ball.setOrigin(ball.getGlobalBounds().width / 2, ball.getGlobalBounds().height / 2);
   ball.setScale(config::SimulationConfig::BALL_SCALE, config::SimulationConfig::BALL_SCALE);

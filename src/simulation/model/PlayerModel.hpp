@@ -10,6 +10,10 @@ class PlayerModel {
   uint16_t cellZ;
 
  public:
-  PlayerModel();
+  PlayerModel() = default;
+  void init();
+  void update();
+  void moveAbsolute(uint16_t xPos, uint16_t yPos, uint16_t zPos);
+  void moveRelative(int16_t xDelta, int16_t yDelta, int16_t zDelta);
 };
 }  // namespace simulation

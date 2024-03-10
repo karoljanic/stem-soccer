@@ -8,7 +8,8 @@ class BallView {
   sf::Sprite ball;
 
  public:
-  explicit BallView(const sf::Vector2f &position);
+  explicit BallView() = default;
+  void init(const sf::Vector3f &position);
   void update();
   void draw();
 };

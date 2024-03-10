@@ -5,7 +5,10 @@
 #include "../../config/SimulationConfig.hpp"
 
 namespace simulation {
-StadiumView::StadiumView(const sf::Vector2f &position) {
+void StadiumView::init(const sf::Vector3f &position) {
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::ARENA_BACKGROUND_TEXTURE,
+													"simulation_background");
+
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::ARENA_GRASS_TEXTURE, "grass");
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::ARENA_SAND_TEXTURE, "sand");
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::ARENA_SNOW_TEXTURE, "snow");
@@ -20,6 +23,9 @@ StadiumView::StadiumView(const sf::Vector2f &position) {
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::ARENA_GRASS_GROUND8_TEXTURE, "gg8");
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::ARENA_GRASS_GROUND9_TEXTURE, "gg9");
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::ARENA_GRASS_GROUND10_TEXTURE, "gg10");
+
+  backgroundTexture = game::GameData::getInstance()->assets.getTexture("simulation_background");
+  background.setTexture(backgroundTexture);
 
   for (int i = -config::SimulationConfig::STADIUM_WIDTH; i <= config::SimulationConfig::STADIUM_WIDTH; i++) {
 	for (int j = -config::SimulationConfig::STADIUM_LENGTH; j <= config::SimulationConfig::STADIUM_LENGTH; j++) {
@@ -100,7 +106,7 @@ StadiumView::StadiumView(const sf::Vector2f &position) {
 	  }
 
 	  blocks.back()->setPosition(cartesianToIsometric(
-		  sf::Vector2f{static_cast<float>(i), static_cast<float>(j)}) + position);
+		  sf::Vector2f{static_cast<float>(i), static_cast<float>(j)}) + sf::Vector2f{position.x, position.y});
 	  blocks.back()->setScale(config::SimulationConfig::STADIUM_BLOCK_SCALE,
 							  config::SimulationConfig::STADIUM_BLOCK_SCALE);
 	}
@@ -110,6 +116,7 @@ StadiumView::StadiumView(const sf::Vector2f &position) {
 void StadiumView::update() {}
 
 void StadiumView::draw() {
+  game::GameData::getInstance()->window.draw(background);
   for (auto &block : blocks) {
 	game::GameData::getInstance()->window.draw(*block);
   }
