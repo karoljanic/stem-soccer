@@ -5,6 +5,7 @@
 
 #include <cstdint>
 #include <vector>
+#include <SFML/Graphics.hpp>
 
 namespace simulation {
 class MatchModel {
@@ -15,7 +16,12 @@ class MatchModel {
 
  public:
   MatchModel() = default;
-  void init(float windowCenterX, float windowCenterY);
-  void update();
+  explicit MatchModel(const std::vector<sf::Vector3i> &firstTeamPlayersPositions,
+					  const std::vector<sf::Vector3i> &secondTeamPlayersPositions,
+					  const sf::Vector3i &ballPosition);
+  void update(float dt);
+  const std::vector<PlayerModel> &getFirstTeamPlayers() const;
+  const std::vector<PlayerModel> &getSecondTeamPlayers() const;
+  const BallModel &getBall() const;
 };
 }  // namespace simulation

@@ -1,23 +1,22 @@
-#include "BallView.hpp"
+#include "BallViewDrawer.hpp"
+#include "../Utils.hpp"
 #include "../../game/GameData.hpp"
 #include "../../config/AssetsConfig.hpp"
 #include "../../config/SimulationConfig.hpp"
 
 namespace simulation {
-void BallView::init(const sf::Vector3f &position) {
+BallViewDrawer::BallViewDrawer() {
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::BALL_TEXTURE, "ball");
   ball.setTexture(game::GameData::getInstance()->assets.getTexture("ball"));
-  ball.setPosition(sf::Vector2f(position.x, position.y));
 
   ball.setOrigin(ball.getGlobalBounds().width / 2, ball.getGlobalBounds().height / 2);
   ball.setScale(config::SimulationConfig::BALL_SCALE, config::SimulationConfig::BALL_SCALE);
 }
 
-void BallView::update() {
-  ball.rotate(config::SimulationConfig::BALL_ROTATION);
-}
-
-void BallView::draw() {
+void BallViewDrawer::draw(const BallModel &ballModel, const sf::Vector3f &origin) {
+  const auto isometricCoordinate = cartesianToIsometric(ballModel.getPosition());
+  ball.setPosition(isometricCoordinate.x + origin.x, isometricCoordinate.y + origin.y);
+  ball.setRotation(ballModel.getRotation());
   game::GameData::getInstance()->window.draw(ball);
 }
-}  // namespace simulation
+} // namespace simulation

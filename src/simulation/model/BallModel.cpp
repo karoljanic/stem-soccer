@@ -1,23 +1,24 @@
 #include "BallModel.hpp"
 
 namespace simulation {
-void BallModel::init() {
-  cellX = 0;
-  cellY = 0;
-  cellZ = 0;
+BallModel::BallModel(const sf::Vector3i &initialPosition) :
+	position{initialPosition} {}
+
+void BallModel::update(float dt) {}
+
+void BallModel::moveAbsolute(const sf::Vector3i &newPosition) {
+  position = newPosition;
 }
 
-void BallModel::update() {}
-
-void BallModel::moveAbsolute(uint16_t xPos, uint16_t yPos, uint16_t zPos) {
-  cellX = xPos;
-  cellY = yPos;
-  cellZ = zPos;
+void BallModel::moveRelative(const sf::Vector3i &displacement) {
+  position += displacement;
 }
 
-void BallModel::moveRelative(int16_t xDelta, int16_t yDelta, int16_t zDelta) {
-  cellX += xDelta;
-  cellY += yDelta;
-  cellZ += zDelta;
+const sf::Vector3i &BallModel::getPosition() const {
+  return position;
+}
+
+float BallModel::getRotation() const {
+  return rotation;
 }
 } // namespace simulation

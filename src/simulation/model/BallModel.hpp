@@ -1,19 +1,21 @@
 #pragma once
 
+#include <SFML/Graphics.hpp>
 #include <cstdint>
 
 namespace simulation {
 class BallModel {
  private:
-  uint16_t cellX;
-  uint16_t cellY;
-  uint16_t cellZ;
+  sf::Vector3i position;
+  float rotation;
 
  public:
   BallModel() = default;
-  void init();
-  void update();
-  void moveAbsolute(uint16_t xPos, uint16_t yPos, uint16_t zPos);
-  void moveRelative(int16_t xDelta, int16_t yDelta, int16_t zDelta);
+  explicit BallModel(const sf::Vector3i &initialPosition);
+  void update(float dt);
+  void moveAbsolute(const sf::Vector3i &newPosition);
+  void moveRelative(const sf::Vector3i &displacement);
+  const sf::Vector3i& getPosition() const;
+  float getRotation() const;
 };
 }  // namespace simulation

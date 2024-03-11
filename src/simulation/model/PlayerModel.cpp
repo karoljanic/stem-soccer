@@ -1,23 +1,24 @@
 #include "PlayerModel.hpp"
 
 namespace simulation {
-void PlayerModel::init() {
-  cellX = 0;
-  cellY = 0;
-  cellZ = 0;
+PlayerModel::PlayerModel(const sf::Vector3i &initialPosition) :
+	position{initialPosition} {}
+
+void PlayerModel::update(float dt) {}
+
+void PlayerModel::moveAbsolute(const sf::Vector3i &newPosition) {
+  position = newPosition;
 }
 
-void PlayerModel::update() {}
-
-void PlayerModel::moveAbsolute(uint16_t xPos, uint16_t yPos, uint16_t zPos) {
-  cellX = xPos;
-  cellY = yPos;
-  cellZ = zPos;
+void PlayerModel::moveRelative(const sf::Vector3i &displacement) {
+  position += displacement;
 }
 
-void PlayerModel::moveRelative(int16_t xDelta, int16_t yDelta, int16_t zDelta) {
-  cellX += xDelta;
-  cellY += yDelta;
-  cellZ += zDelta;
+const sf::Vector3i &PlayerModel::getPosition() const {
+  return position;
+}
+
+PlayerModel::AnimationState PlayerModel::getAnimationFrame() const {
+  return animationFrame;
 }
 } // namespace simulation

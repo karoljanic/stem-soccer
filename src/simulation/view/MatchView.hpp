@@ -1,23 +1,23 @@
 #pragma once
 
 #include "../model/MatchModel.hpp"
-#include "StadiumView.hpp"
-#include "PlayerView.hpp"
-#include "BallView.hpp"
+#include "StadiumViewDrawer.hpp"
+#include "PlayerViewDrawer.hpp"
+#include "BallViewDrawer.hpp"
 #include <memory>
 
 namespace simulation {
 class MatchView {
  private:
   std::shared_ptr<MatchModel> matchModelPtr;
-  StadiumView stadiumView;
-  std::vector<PlayerView> firstTeamPlayersViews;
-  std::vector<PlayerView> secondTeamPlayersViews;
-  BallView ballView;
+  sf::Vector3f worldOrigin;
+  StadiumViewDrawer stadiumViewDrawer;
+  PlayerViewDrawer playerViewDrawer;
+  BallViewDrawer ballViewDrawer;
 
  public:
   MatchView() = default;
-  void init(const MatchModel &matchModel);
+  void init(const MatchModel &matchModel, const sf::Vector3f &origin);
   void draw();
 };
 } // namespace simulation
