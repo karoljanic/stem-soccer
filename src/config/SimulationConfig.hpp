@@ -4,14 +4,14 @@
 
 namespace config {
 struct SimulationConfig {
-  static constexpr uint16_t STADIUM_WIDTH = 20;
-  static constexpr uint16_t STADIUM_LENGTH = 30;
+  static constexpr uint16_t STADIUM_WIDTH = 41;
+  static constexpr uint16_t STADIUM_LENGTH = 61;
   static constexpr uint16_t STADIUM_HEIGHT = 15;
-  static constexpr uint16_t PITCH_WIDTH = 12;
-  static constexpr uint16_t PITCH_LENGTH = 19;
-  static constexpr uint16_t GOAL_WIDTH = 2;
-  static constexpr uint16_t GOALKEEPER_FIELD_LENGTH = 7;
-  static constexpr uint16_t GOALKEEPER_FIELD_WIDTH = 5;
+  static constexpr uint16_t PITCH_WIDTH = 23;
+  static constexpr uint16_t PITCH_LENGTH = 37;
+  static constexpr uint16_t GOAL_WIDTH = 5;
+  static constexpr uint16_t GOALKEEPER_FIELD_LENGTH = 5;
+  static constexpr uint16_t GOALKEEPER_FIELD_WIDTH = 11;
 
   static constexpr uint16_t STADIUM_BLOCK_WIDTH = 45.0F;
   static constexpr uint16_t STADIUM_BLOCK_HEIGHT = 26.0F;

@@ -26,79 +26,91 @@ StadiumViewDrawer::StadiumViewDrawer() {
   backgroundTexture = game::GameData::getInstance()->assets.getTexture("simulation_background");
   background.setTexture(backgroundTexture);
 
-  for (int i = -config::SimulationConfig::STADIUM_WIDTH; i <= config::SimulationConfig::STADIUM_WIDTH; i++) {
-	for (int j = -config::SimulationConfig::STADIUM_LENGTH; j <= config::SimulationConfig::STADIUM_LENGTH; j++) {
-	  if (i == -config::SimulationConfig::PITCH_WIDTH && j == -config::SimulationConfig::PITCH_LENGTH) {
+  for (int i = -(config::SimulationConfig::STADIUM_WIDTH / 2 + 1);
+	   i <= (config::SimulationConfig::STADIUM_WIDTH / 2 + 1); i++) {
+	for (int j = -(config::SimulationConfig::STADIUM_LENGTH / 2 + 1);
+		 j <= (config::SimulationConfig::STADIUM_LENGTH / 2 + 1); j++) {
+	  if (i == -(config::SimulationConfig::PITCH_WIDTH / 2 + 1)
+		  && j == -(config::SimulationConfig::PITCH_LENGTH / 2 + 1)) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg6")));
-	  } else if (i == config::SimulationConfig::PITCH_WIDTH && j == config::SimulationConfig::PITCH_LENGTH) {
+	  } else if (i == (config::SimulationConfig::PITCH_WIDTH / 2 + 1)
+		  && j == (config::SimulationConfig::PITCH_LENGTH / 2 + 1)) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg5")));
-	  } else if (i == -config::SimulationConfig::PITCH_WIDTH && j == config::SimulationConfig::PITCH_LENGTH) {
+	  } else if (i == -(config::SimulationConfig::PITCH_WIDTH / 2 + 1)
+		  && j == (config::SimulationConfig::PITCH_LENGTH / 2 + 1)) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg4")));
-	  } else if (i == config::SimulationConfig::PITCH_WIDTH && j == -config::SimulationConfig::PITCH_LENGTH) {
+	  } else if (i == (config::SimulationConfig::PITCH_WIDTH / 2 + 1)
+		  && j == -(config::SimulationConfig::PITCH_LENGTH / 2 + 1)) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg3")));
-	  } else if (i == -config::SimulationConfig::PITCH_WIDTH && abs(j) < config::SimulationConfig::PITCH_LENGTH) {
+	  } else if (i == -(config::SimulationConfig::PITCH_WIDTH / 2 + 1)
+		  && abs(j) < (config::SimulationConfig::PITCH_LENGTH / 2 + 1)) {
 		if (j == 0) {
 		  blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg8")));
 		} else {
 		  blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg2")));
 		}
-	  } else if (i == config::SimulationConfig::PITCH_WIDTH && abs(j) < config::SimulationConfig::PITCH_LENGTH) {
+	  } else if (i == (config::SimulationConfig::PITCH_WIDTH / 2 + 1)
+		  && abs(j) < (config::SimulationConfig::PITCH_LENGTH / 2 + 1)) {
 		if (j == 0) {
 		  blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg10")));
 		} else {
 		  blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg2")));
 		}
-	  } else if (j == config::SimulationConfig::PITCH_LENGTH && abs(i) <= config::SimulationConfig::PITCH_WIDTH) {
-		if (abs(i) <= config::SimulationConfig::GOAL_WIDTH) {
+	  } else if (j == (config::SimulationConfig::PITCH_LENGTH / 2 + 1)
+		  && abs(i) <= (config::SimulationConfig::PITCH_WIDTH / 2 + 1)) {
+		if (abs(i) <= (config::SimulationConfig::GOAL_WIDTH / 2)) {
 		  blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("ground")));
-		} else if (abs(i) == config::SimulationConfig::GOALKEEPER_FIELD_WIDTH) {
+		} else if (abs(i) == (config::SimulationConfig::GOALKEEPER_FIELD_WIDTH / 2 + 1)) {
 		  blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg9")));
 		} else {
 		  blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg1")));
 		}
-	  } else if (j == -config::SimulationConfig::PITCH_LENGTH && abs(i) <= config::SimulationConfig::PITCH_WIDTH) {
-		if (abs(i) <= config::SimulationConfig::GOAL_WIDTH) {
+	  } else if (j == -(config::SimulationConfig::PITCH_LENGTH / 2 + 1)
+		  && abs(i) <= (config::SimulationConfig::PITCH_WIDTH / 2 + 1)) {
+		if (abs(i) <= (config::SimulationConfig::GOAL_WIDTH / 2)) {
 		  blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("ground")));
-		} else if (abs(i) == config::SimulationConfig::GOALKEEPER_FIELD_WIDTH) {
+		} else if (abs(i) == (config::SimulationConfig::GOALKEEPER_FIELD_WIDTH / 2 + 1)) {
 		  blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg7")));
 		} else {
 		  blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg1")));
 		}
-	  } else if (j == 0 && abs(i) <= config::SimulationConfig::PITCH_WIDTH) {
+	  } else if (j == 0 && abs(i) <= (config::SimulationConfig::PITCH_WIDTH / 2 + 1)) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg1")));
-	  } else if (abs(i) == config::SimulationConfig::GOALKEEPER_FIELD_WIDTH &&
-		  (j < config::SimulationConfig::PITCH_LENGTH &&
-			  j >= (config::SimulationConfig::PITCH_LENGTH -
+	  } else if (abs(i) == (config::SimulationConfig::GOALKEEPER_FIELD_WIDTH / 2 + 1) &&
+		  (j < (config::SimulationConfig::PITCH_LENGTH / 2 + 1) &&
+			  j >= ((config::SimulationConfig::PITCH_LENGTH / 2 + 1) -
 				  config::SimulationConfig::GOALKEEPER_FIELD_LENGTH) ||
-			  j > -config::SimulationConfig::PITCH_LENGTH &&
-				  j <= -(config::SimulationConfig::PITCH_LENGTH -
+			  j > -(config::SimulationConfig::PITCH_LENGTH / 2 + 1) &&
+				  j <= -((config::SimulationConfig::PITCH_LENGTH / 2 + 1) -
 					  config::SimulationConfig::GOALKEEPER_FIELD_LENGTH))) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg2")));
-	  } else if ((i < config::SimulationConfig::GOALKEEPER_FIELD_WIDTH && i >= 0 ||
-		  i > -config::SimulationConfig::GOALKEEPER_FIELD_WIDTH && i <= 0) &&
-		  (j == (config::SimulationConfig::PITCH_LENGTH -
+	  } else if ((i < (config::SimulationConfig::GOALKEEPER_FIELD_WIDTH / 2 + 1) && i >= 0 ||
+		  i > -(config::SimulationConfig::GOALKEEPER_FIELD_WIDTH / 2 + 1) && i <= 0) &&
+		  (j == ((config::SimulationConfig::PITCH_LENGTH / 2 + 1) -
 			  config::SimulationConfig::GOALKEEPER_FIELD_LENGTH - 1) ||
-			  j == -(config::SimulationConfig::PITCH_LENGTH -
+			  j == -((config::SimulationConfig::PITCH_LENGTH / 2 + 1) -
 				  config::SimulationConfig::GOALKEEPER_FIELD_LENGTH - 1))) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg1")));
-	  } else if (i == config::SimulationConfig::GOALKEEPER_FIELD_WIDTH &&
-		  j == (config::SimulationConfig::PITCH_LENGTH -
+	  } else if (i == (config::SimulationConfig::GOALKEEPER_FIELD_WIDTH / 2 + 1) &&
+		  j == ((config::SimulationConfig::PITCH_LENGTH / 2 + 1) -
 			  config::SimulationConfig::GOALKEEPER_FIELD_LENGTH - 1)) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg3")));
-	  } else if (i == -config::SimulationConfig::GOALKEEPER_FIELD_WIDTH &&
-		  j == (config::SimulationConfig::PITCH_LENGTH -
+	  } else if (i == -(config::SimulationConfig::GOALKEEPER_FIELD_WIDTH / 2 + 1) &&
+		  j == ((config::SimulationConfig::PITCH_LENGTH / 2 + 1) -
 			  config::SimulationConfig::GOALKEEPER_FIELD_LENGTH - 1)) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg6")));
-	  } else if (i == config::SimulationConfig::GOALKEEPER_FIELD_WIDTH &&
-		  j == -(config::SimulationConfig::PITCH_LENGTH -
+	  } else if (i == (config::SimulationConfig::GOALKEEPER_FIELD_WIDTH / 2 + 1) &&
+		  j == -((config::SimulationConfig::PITCH_LENGTH / 2 + 1) -
 			  config::SimulationConfig::GOALKEEPER_FIELD_LENGTH - 1)) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg5")));
-	  } else if (i == -config::SimulationConfig::GOALKEEPER_FIELD_WIDTH &&
-		  j == -(config::SimulationConfig::PITCH_LENGTH -
+	  } else if (i == -(config::SimulationConfig::GOALKEEPER_FIELD_WIDTH / 2 + 1) &&
+		  j == -((config::SimulationConfig::PITCH_LENGTH / 2 + 1) -
 			  config::SimulationConfig::GOALKEEPER_FIELD_LENGTH - 1)) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("gg4")));
-	  } else if (i < config::SimulationConfig::PITCH_WIDTH && i > -config::SimulationConfig::PITCH_WIDTH &&
-		  j < config::SimulationConfig::PITCH_LENGTH && j > -config::SimulationConfig::PITCH_LENGTH) {
+	  } else if (i < (config::SimulationConfig::PITCH_WIDTH / 2 + 1)
+		  && i > -(config::SimulationConfig::PITCH_WIDTH / 2 + 1) &&
+		  j < (config::SimulationConfig::PITCH_LENGTH / 2 + 1)
+		  && j > -(config::SimulationConfig::PITCH_LENGTH / 2 + 1)) {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("grass")));
 	  } else {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("sand")));
