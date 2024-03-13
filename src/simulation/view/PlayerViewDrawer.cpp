@@ -6,12 +6,42 @@
 
 namespace simulation {
 PlayerViewDrawer::PlayerViewDrawer() {
-  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_TEXTURE, "kit1");
-  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER2_TEXTURE, "kit2");
-  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER3_TEXTURE, "kit3");
-  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER4_TEXTURE, "kit4");
-  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER5_TEXTURE, "kit5");
-  footballer.setTexture(game::GameData::getInstance()->assets.getTexture("kit1"));
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_BACK_TEXTURE, "kit1-back");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_DEATH_TEXTURE, "kit1-death");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_FRONT_TEXTURE, "kit1-front");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_FROZEN_TEXTURE, "kit1-frozen");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_IDLE_TEXTURE, "kit1-idle");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_WALK_TEXTURE, "kit1-walk");
+
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_BACK_TEXTURE, "kit2-back");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_DEATH_TEXTURE, "kit2-death");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_FRONT_TEXTURE, "kit2-front");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_FROZEN_TEXTURE, "kit2-frozen");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_IDLE_TEXTURE, "kit2-idle");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_WALK_TEXTURE, "kit2-walk");
+
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_BACK_TEXTURE, "kit3-back");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_DEATH_TEXTURE, "kit3-death");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_FRONT_TEXTURE, "kit3-front");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_FROZEN_TEXTURE, "kit3-frozen");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_IDLE_TEXTURE, "kit3-idle");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_WALK_TEXTURE, "kit3-walk");
+
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_BACK_TEXTURE, "kit4-back");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_DEATH_TEXTURE, "kit4-death");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_FRONT_TEXTURE, "kit4-front");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_FROZEN_TEXTURE, "kit4-frozen");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_IDLE_TEXTURE, "kit4-idle");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_WALK_TEXTURE, "kit4-walk");
+
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_BACK_TEXTURE, "kit5-back");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_DEATH_TEXTURE, "kit5-death");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_FRONT_TEXTURE, "kit5-front");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_FROZEN_TEXTURE, "kit5-frozen");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_IDLE_TEXTURE, "kit5-idle");
+  game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_WALK_TEXTURE, "kit5-walk");
+
+  footballer.setTexture(game::GameData::getInstance()->assets.getTexture("kit1-walk"));
   footballer.setScale(config::SimulationConfig::PLAYER_SCALE, config::SimulationConfig::PLAYER_SCALE);
 }
 
