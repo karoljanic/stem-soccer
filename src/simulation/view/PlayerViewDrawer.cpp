@@ -4,6 +4,8 @@
 #include "../../config/AssetsConfig.hpp"
 #include "../../config/SimulationConfig.hpp"
 
+#include <iostream>
+
 namespace simulation {
 PlayerViewDrawer::PlayerViewDrawer() {
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_BACK_TEXTURE, "kit1-back");
@@ -41,7 +43,7 @@ PlayerViewDrawer::PlayerViewDrawer() {
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_IDLE_TEXTURE, "kit5-idle");
   game::GameData::getInstance()->assets.loadTexture(config::AssetsConfig::PLAYER1_WALK_TEXTURE, "kit5-walk");
 
-  footballer.setTexture(game::GameData::getInstance()->assets.getTexture("kit1-walk"));
+  footballer.setTexture(game::GameData::getInstance()->assets.getTexture("kit1-idle"));
   footballer.setScale(config::SimulationConfig::PLAYER_SCALE, config::SimulationConfig::PLAYER_SCALE);
 }
 
@@ -50,10 +52,22 @@ void PlayerViewDrawer::draw(const PlayerModel &playerModel, const sf::Vector3f &
   footballer.setPosition(isometricCoordinate.x + origin.x, isometricCoordinate.y + origin.y);
 //  footballer.scale(-1, 1);
 
+  const std::pair<PlayerModel::AnimationState, int> animationState = playerModel.getAnimationState();
+  std::cout << "Animation state: " << static_cast<int>(animationState.first) << " " << animationState.second
+			<< std::endl;
+
+//  switch (animationState.first) {
+//	case PlayerModel::AnimationState::IDLE:break;
+//	case PlayerModel::AnimationState::WALKING_UP:break;
+//	case PlayerModel::AnimationState::WALKING_DOWN:break;
+//	case PlayerModel::AnimationState::WALKING_LEFT:break;
+//	case PlayerModel::AnimationState::WALKING_RIGHT:break;
+//  }
+
   footballer.setTextureRect(
 	  sf::IntRect(0, 0, config::SimulationConfig::PLAYER_WIDTH, config::SimulationConfig::PLAYER_HEIGHT));
   footballer.setTextureRect(sf::IntRect(
-	  config::SimulationConfig::PLAYER_WIDTH * static_cast<uint8_t>(playerModel.getAnimationFrame()), 0,
+	  config::SimulationConfig::PLAYER_WIDTH * animationState.second, 0,
 	  config::SimulationConfig::PLAYER_WIDTH,
 	  config::SimulationConfig::PLAYER_HEIGHT));
 

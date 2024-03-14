@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 #include <cstdint>
+#include <queue>
+#include <utility>
 
 namespace simulation {
 class PlayerModel {
@@ -16,7 +18,8 @@ class PlayerModel {
 
  private:
   sf::Vector3i position;
-  AnimationState animationFrame;
+  std::queue<AnimationState> animationsBuffer;
+  int animationFrame{0};
 
  public:
   PlayerModel() = default;
@@ -25,6 +28,6 @@ class PlayerModel {
   void moveAbsolute(const sf::Vector3i &newPosition);
   void moveRelative(const sf::Vector3i &displacement);
   const sf::Vector3i &getPosition() const;
-  AnimationState getAnimationFrame() const;
+  std::pair<PlayerModel::AnimationState, int> getAnimationState() const;
 };
 }  // namespace simulation
