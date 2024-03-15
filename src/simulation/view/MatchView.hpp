@@ -9,7 +9,7 @@
 namespace simulation {
 class MatchView {
  private:
-  std::shared_ptr<MatchModel> matchModelPtr;
+  MatchModel* matchModelPtr;
   sf::Vector3f worldOrigin;
   StadiumViewDrawer stadiumViewDrawer;
   PlayerViewDrawer playerViewDrawer;
@@ -17,7 +17,7 @@ class MatchView {
 
  public:
   MatchView() = default;
-  void init(const MatchModel &matchModel, const sf::Vector3f &origin);
+  void init(MatchModel* matchModel, const sf::Vector3f &origin);
   void draw();
 };
 } // namespace simulation

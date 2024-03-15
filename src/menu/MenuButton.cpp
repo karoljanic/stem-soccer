@@ -2,7 +2,6 @@
 #include "../game/GameData.hpp"
 
 #include <utility>
-#include <iostream>
 
 namespace menu {
 MenuButton::MenuButton(sf::Vector2f centerAnchor,

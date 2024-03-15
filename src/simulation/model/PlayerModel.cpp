@@ -26,7 +26,7 @@ const sf::Vector3i &PlayerModel::getPosition() const {
 
 std::pair<PlayerModel::AnimationState, int> PlayerModel::getAnimationState() const {
   if (animationsBuffer.empty()) {
-	return {AnimationState::IDLE, animationFrame};
+	return {AnimationState::WALKING_RIGHT, animationFrame};
   }
 
   return {animationsBuffer.front(), animationFrame};

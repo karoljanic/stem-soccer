@@ -20,7 +20,8 @@ struct SimulationConfig {
   static constexpr float BALL_SCALE = 0.3F;
   static constexpr float BALL_ROTATION = 50.0F;
 
-  static constexpr uint16_t PLAYER_WIDTH = 15;
+  static constexpr uint16_t PLAYER_WALK_WIDTH = 15;
+  static constexpr int16_t  PLAYER_NO_WALK_WIDTH = 13;
   static constexpr uint16_t PLAYER_HEIGHT = 19;
   static constexpr float PLAYER_SCALE = 2.5F;
   static constexpr uint8_t PLAYERS_PER_TEAM = 11;

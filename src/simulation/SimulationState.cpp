@@ -15,7 +15,7 @@ void SimulationState::init() {
 							  {6, -6, 0}
 						  }, {0, 0, 0}};
 
-  matchView.init(matchModel, sf::Vector3f{originX, originY, originZ});
+  matchView.init(&matchModel, sf::Vector3f{originX, originY, originZ});
 }
 
 void SimulationState::pause() {}
@@ -26,7 +26,7 @@ void SimulationState::update(float dt) {
   matchModel.update(dt);
 }
 
-void SimulationState::draw(float dt) {
+void SimulationState::draw() {
   matchView.draw();
 }
 }  // namespace simulation

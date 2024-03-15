@@ -38,7 +38,7 @@ void MenuState::update(float /*dt*/) {
   }
 }
 
-void MenuState::draw(float /*dt*/) {
+void MenuState::draw() {
   game::GameData::getInstance()->window.clear();
   game::GameData::getInstance()->window.draw(background);
   for (const auto &button : buttons) {

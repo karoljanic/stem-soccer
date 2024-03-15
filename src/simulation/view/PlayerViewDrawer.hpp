@@ -7,6 +7,7 @@ namespace simulation {
 class PlayerViewDrawer {
  private:
   sf::Sprite footballer;
+  uint16_t currentAnimationFrameWidth;
 
  public:
   PlayerViewDrawer();

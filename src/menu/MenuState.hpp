@@ -16,6 +16,6 @@ class MenuState : public game::State {
   void pause() override;
   void resume() override;
   void update(float dt) override;
-  void draw(float dt) override;
+  void draw() override;
 };
 } // namespace menu

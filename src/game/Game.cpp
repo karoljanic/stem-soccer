@@ -10,7 +10,6 @@ Game::Game(uint16_t width, uint16_t height, uint16_t fps, const std::string &tit
 void Game::run() {
   float newTime;
   float frameTime;
-  float interpolation;
 
   float currentTime = GameData::getInstance()->clock.getElapsedTime().asSeconds();
   float accumulator = 0.0F;
@@ -27,15 +26,17 @@ void Game::run() {
 	currentTime = newTime;
 	accumulator += frameTime;
 
+	bool draw = false;
 	while (accumulator >= dt) {
+	  draw = true;
 	  GameData::getInstance()->machine.getActiveState()->handleInput();
 	  GameData::getInstance()->machine.getActiveState()->update(dt);
-
 	  accumulator -= dt;
 	}
 
-	interpolation = accumulator / dt;
-	GameData::getInstance()->machine.getActiveState()->draw(interpolation);
+	if (draw) {
+	  GameData::getInstance()->machine.getActiveState()->draw();
+	}
   }
 }
 } // namespace game

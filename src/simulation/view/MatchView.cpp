@@ -2,8 +2,8 @@
 #include "../../game/GameData.hpp"
 
 namespace simulation {
-void MatchView::init(const MatchModel &matchModel, const sf::Vector3f &origin) {
-  matchModelPtr = std::make_shared<MatchModel>(matchModel);
+void MatchView::init(MatchModel* matchModel, const sf::Vector3f &origin) {
+  matchModelPtr = matchModel;
   worldOrigin = origin;
 }
 
