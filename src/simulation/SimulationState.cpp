@@ -8,12 +8,17 @@ void SimulationState::init() {
   const float originZ = 0;
 
   matchModel = MatchModel{{
-							  {3, 5, 0},
-							  {-6, 6, 0}
+							  {0, 0, 0},
+							  {0, 3, 0},
+							  {0, 5, 0}
 						  }, {
-							  {-3, -5, 0},
-							  {6, -6, 0}
-						  }, {0, 0, 0}};
+							  {0, -2, 0},
+							  {0, -4, 0},
+							  {0, -6, 0}
+						  },
+						  {
+							  0, 0, 0
+						  }};
 
   matchView.init(&matchModel, sf::Vector3f{originX, originY, originZ});
 }

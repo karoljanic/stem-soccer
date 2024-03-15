@@ -45,9 +45,6 @@ PlayerViewDrawer::PlayerViewDrawer() {
 }
 
 void PlayerViewDrawer::draw(const PlayerModel &playerModel, const sf::Vector3f &origin) {
-  const auto isometricCoordinate = cartesianToIsometric(playerModel.getPosition());
-  footballer.setPosition(isometricCoordinate.x + origin.x, isometricCoordinate.y + origin.y);
-
   const std::pair<PlayerModel::AnimationState, int> animationState = playerModel.getAnimationState();
 
   switch (animationState.first) {
@@ -81,6 +78,11 @@ void PlayerViewDrawer::draw(const PlayerModel &playerModel, const sf::Vector3f &
   footballer.setTextureRect(sf::IntRect(
 	  currentAnimationFrameWidth * animationState.second, 0,
 	  currentAnimationFrameWidth, config::SimulationConfig::PLAYER_HEIGHT));
+
+  footballer.setOrigin(footballer.getGlobalBounds().width / 2, footballer.getGlobalBounds().height / 2);
+
+  const auto isometricCoordinate = cartesianToIsometric(playerModel.getPosition() + sf::Vector3i{1, 0, 0});
+  footballer.setPosition(isometricCoordinate.x + origin.x, isometricCoordinate.y + origin.y);
 
   game::GameData::getInstance()->window.draw(footballer);
 }

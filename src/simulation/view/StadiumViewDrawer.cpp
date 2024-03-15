@@ -116,7 +116,7 @@ StadiumViewDrawer::StadiumViewDrawer() {
 		blocks.emplace_back(sf::Sprite(game::GameData::getInstance()->assets.getTexture("sand")));
 	  }
 
-	  const auto isometricCoordinate = cartesianToIsometric(sf::Vector3i{i, j, 0});
+	  const auto isometricCoordinate = cartesianToIsometric(sf::Vector3i{i - 1, j, 0});
 	  blocks.back().setPosition(isometricCoordinate);
 	  blocks.back().setScale(config::SimulationConfig::STADIUM_BLOCK_SCALE,
 							 config::SimulationConfig::STADIUM_BLOCK_SCALE);

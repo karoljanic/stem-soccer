@@ -2,7 +2,7 @@
 #include "../../game/GameData.hpp"
 
 namespace simulation {
-void MatchView::init(MatchModel* matchModel, const sf::Vector3f &origin) {
+void MatchView::init(MatchModel *matchModel, const sf::Vector3f &origin) {
   matchModelPtr = matchModel;
   worldOrigin = origin;
 }

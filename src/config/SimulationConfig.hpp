@@ -24,6 +24,6 @@ struct SimulationConfig {
   static constexpr int16_t  PLAYER_NO_WALK_WIDTH = 13;
   static constexpr uint16_t PLAYER_HEIGHT = 19;
   static constexpr float PLAYER_SCALE = 2.5F;
-  static constexpr uint8_t PLAYERS_PER_TEAM = 11;
+  static constexpr uint8_t PLAYERS_PER_TEAM = 3;
 };
 } // namespace config

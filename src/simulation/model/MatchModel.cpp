@@ -9,6 +9,11 @@ MatchModel::MatchModel(const std::vector<sf::Vector3i> &firstTeamPlayersPosition
 	firstTeamPlayers{config::SimulationConfig::PLAYERS_PER_TEAM},
 	secondTeamPlayers{config::SimulationConfig::PLAYERS_PER_TEAM} {
 
+  if (firstTeamPlayersPositions.size() != config::SimulationConfig::PLAYERS_PER_TEAM ||
+	  secondTeamPlayersPositions.size() != config::SimulationConfig::PLAYERS_PER_TEAM) {
+	throw std::invalid_argument("Invalid number of players");
+  }
+
   for (size_t i = 0; i < config::SimulationConfig::PLAYERS_PER_TEAM; i++) {
 	firstTeamPlayers[i].moveAbsolute(firstTeamPlayersPositions[i]);
 	secondTeamPlayers[i].moveAbsolute(secondTeamPlayersPositions[i]);
