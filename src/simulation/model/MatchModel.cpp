@@ -7,7 +7,8 @@ MatchModel::MatchModel(const std::vector<sf::Vector3i> &firstTeamPlayersPosition
 					   const sf::Vector3i &ballPosition) :
 	ball{ballPosition},
 	firstTeamPlayers{config::SimulationConfig::PLAYERS_PER_TEAM},
-	secondTeamPlayers{config::SimulationConfig::PLAYERS_PER_TEAM} {
+	secondTeamPlayers{config::SimulationConfig::PLAYERS_PER_TEAM},
+	timeAccumulator{0} {
 
   if (firstTeamPlayersPositions.size() != config::SimulationConfig::PLAYERS_PER_TEAM ||
 	  secondTeamPlayersPositions.size() != config::SimulationConfig::PLAYERS_PER_TEAM) {
@@ -30,6 +31,12 @@ void MatchModel::update(float dt) {
   for (auto &player : secondTeamPlayers) {
 	player.update(dt);
   }
+
+  timeAccumulator += dt;
+  if (timeAccumulator >= config::SimulationConfig::PLAYER_POSITIONS_UPDATE_INTERVAL) {
+	movePlayers();
+	timeAccumulator -= config::SimulationConfig::PLAYER_POSITIONS_UPDATE_INTERVAL;
+  }
 }
 
 const std::vector<PlayerModel> &MatchModel::getFirstTeamPlayers() const {
@@ -42,5 +49,9 @@ const std::vector<PlayerModel> &MatchModel::getSecondTeamPlayers() const {
 
 const BallModel &MatchModel::getBall() const {
   return ball;
+}
+
+void MatchModel::movePlayers() {
+
 }
 } // namespace simulation

@@ -14,6 +14,8 @@ class MatchModel {
   std::vector<PlayerModel> secondTeamPlayers;
   BallModel ball;
 
+  float timeAccumulator;
+
  public:
   MatchModel() = default;
   explicit MatchModel(const std::vector<sf::Vector3i> &firstTeamPlayersPositions,
@@ -23,5 +25,8 @@ class MatchModel {
   const std::vector<PlayerModel> &getFirstTeamPlayers() const;
   const std::vector<PlayerModel> &getSecondTeamPlayers() const;
   const BallModel &getBall() const;
+
+ private:
+  void movePlayers();
 };
 }  // namespace simulation

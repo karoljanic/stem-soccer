@@ -45,7 +45,7 @@ PlayerViewDrawer::PlayerViewDrawer() {
 }
 
 void PlayerViewDrawer::draw(const PlayerModel &playerModel, const sf::Vector3f &origin) {
-  const std::pair<PlayerModel::AnimationState, int> animationState = playerModel.getAnimationState();
+  const std::pair<PlayerModel::AnimationState, sf::Vector2f> animationState = playerModel.getAnimationState();
 
   switch (animationState.first) {
 	case PlayerModel::AnimationState::IDLE:
@@ -76,7 +76,7 @@ void PlayerViewDrawer::draw(const PlayerModel &playerModel, const sf::Vector3f &
   }
 
   footballer.setTextureRect(sf::IntRect(
-	  currentAnimationFrameWidth * animationState.second, 0,
+	  currentAnimationFrameWidth * playerModel.getAnimationFrame(), 0,
 	  currentAnimationFrameWidth, config::SimulationConfig::PLAYER_HEIGHT));
 
   footballer.setOrigin(footballer.getGlobalBounds().width / 2, footballer.getGlobalBounds().height / 2);
