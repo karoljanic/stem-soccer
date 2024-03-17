@@ -12,7 +12,7 @@ class BallModel {
  public:
   BallModel() = default;
   explicit BallModel(const sf::Vector3i &initialPosition);
-  void update(float dt);
+  void update();
   void moveAbsolute(const sf::Vector3i &newPosition);
   void moveRelative(const sf::Vector3i &displacement);
   const sf::Vector3i& getPosition() const;

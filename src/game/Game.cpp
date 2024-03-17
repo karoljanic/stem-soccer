@@ -1,5 +1,6 @@
 #include "Game.hpp"
 #include "../config/WindowConfig.hpp"
+#include <iostream>
 
 namespace game {
 Game::Game(uint16_t width, uint16_t height, uint16_t fps, const std::string &title) {
@@ -20,21 +21,17 @@ void Game::run() {
 	frameTime = newTime - currentTime;
 
 	if (frameTime > config::WindowConfig::MAX_FRAME_TIME) {
+	  std::cout << "Frame time too big: " << frameTime << std::endl;
 	  frameTime = config::WindowConfig::MAX_FRAME_TIME;
 	}
 
 	currentTime = newTime;
 	accumulator += frameTime;
 
-	bool draw = false;
-	while (accumulator >= dt) {
-	  draw = true;
+	if (accumulator >= dt) {
+	  accumulator = 0;
 	  GameData::getInstance()->machine.getActiveState()->handleInput();
-	  GameData::getInstance()->machine.getActiveState()->update(dt);
-	  accumulator -= dt;
-	}
-
-	if (draw) {
+	  GameData::getInstance()->machine.getActiveState()->update(accumulator);
 	  GameData::getInstance()->machine.getActiveState()->draw();
 	}
   }

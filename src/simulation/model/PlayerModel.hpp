@@ -4,6 +4,7 @@
 #include <cstdint>
 #include <queue>
 #include <utility>
+#include <string>
 
 namespace simulation {
 class PlayerModel {
@@ -13,18 +14,23 @@ class PlayerModel {
 	WALKING_UP,
 	WALKING_DOWN,
 	WALKING_LEFT,
-	WALKING_RIGHT
+	WALKING_RIGHT,
+	WALKING_UP_LEFT,
+	WALKING_UP_RIGHT,
+	WALKING_DOWN_LEFT,
+	WALKING_DOWN_RIGHT
   };
 
  private:
   sf::Vector3i position;
-  std::queue<std::pair<AnimationState, sf::Vector2f>> animationsBuffer;
+  std::string kit;
+  std::queue<std::pair<AnimationState, sf::Vector3f>> animationsBuffer;
   uint8_t animationFrame{0};
 
  public:
   PlayerModel() = default;
-  explicit PlayerModel(const sf::Vector3i &position);
-  void update(float dt);
+  explicit PlayerModel(const sf::Vector3i &position, const std::string& kitName);
+  void update();
   void moveAbsolute(const sf::Vector3i &newPosition);
   void moveRelative(const sf::Vector3i &displacement);
   void idle();
@@ -36,8 +42,10 @@ class PlayerModel {
   void moveUpRight();
   void moveDownLeft();
   void moveDownRight();
+  void setKit(const std::string& kitName);
   const sf::Vector3i &getPosition() const;
-  std::pair<PlayerModel::AnimationState, sf::Vector2f> getAnimationState() const;
+  const std::string& getKit() const;
+  std::pair<PlayerModel::AnimationState, sf::Vector3f> getAnimationState() const;
   uint8_t getAnimationFrame() const;
 };
 }  // namespace simulation

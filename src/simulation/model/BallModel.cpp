@@ -5,8 +5,8 @@ namespace simulation {
 BallModel::BallModel(const sf::Vector3i &initialPosition) :
 	position{initialPosition} {}
 
-void BallModel::update(float dt) {
-  rotation += dt * config::SimulationConfig::BALL_ROTATION;
+void BallModel::update() {
+  rotation += config::SimulationConfig::BALL_ROTATION;
 }
 
 void BallModel::moveAbsolute(const sf::Vector3i &newPosition) {

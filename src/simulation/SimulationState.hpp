@@ -11,6 +11,7 @@ class SimulationState : public game::State {
  private:
   MatchModel matchModel;
   MatchView matchView;
+  float timeAccumulator;
 
  public:
   SimulationState() = default;

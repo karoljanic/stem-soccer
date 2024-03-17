@@ -20,6 +20,8 @@ void SimulationState::init() {
 							  {-3, -3, 0},
 							  {2, -5, 0}
 						  },
+						  "kit2",
+						  "kit4",
 						  {
 							  0, 0, 0
 						  }};
@@ -31,8 +33,8 @@ void SimulationState::pause() {}
 
 void SimulationState::resume() {}
 
-void SimulationState::update(float dt) {
-  matchModel.update(dt);
+void SimulationState::update(float /*dt*/) {
+  matchModel.update();
 }
 
 void SimulationState::draw() {
