@@ -2,6 +2,7 @@
 
 #include "../model/BallModel.hpp"
 #include <SFML/Graphics.hpp>
+#include <utility>
 
 namespace simulation {
 class BallViewDrawer {
@@ -10,6 +11,6 @@ class BallViewDrawer {
 
  public:
   BallViewDrawer();
-  void draw(const BallModel& ballModel, const sf::Vector3f &origin);
+  std::pair<sf::Sprite, float> draw(const BallModel& ballModel, const sf::Vector3f &origin);
 };
 } // namespace simulation

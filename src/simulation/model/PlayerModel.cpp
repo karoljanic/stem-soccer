@@ -2,7 +2,7 @@
 #include "../../config/SimulationConfig.hpp"
 
 namespace simulation {
-PlayerModel::PlayerModel(const sf::Vector3i &initialPosition, const std::string& kitName) :
+PlayerModel::PlayerModel(const sf::Vector3i &initialPosition, const std::string &kitName) :
 	position{initialPosition}, kit{kitName} {
 
 }
@@ -30,71 +30,71 @@ void PlayerModel::idle() {
 }
 
 void PlayerModel::moveUp() {
-  position.y++;
+  position.x++;
   for (uint8_t i = 0; i < config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES; i++) {
 	animationsBuffer.push({AnimationState::WALKING_UP,
-						   {0.0F,
-							1.0F + static_cast<float>(-i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
-							0.0F}});
+						   {1 + static_cast<float>(-i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
+							0.0F, 0.0F}});
   }
 }
 
 void PlayerModel::moveDown() {
-  position.y--;
+  position.x--;
   for (uint8_t i = 0; i < config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES; i++) {
 	animationsBuffer.push({AnimationState::WALKING_DOWN,
+						   {-1 + static_cast<float>(i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
+							0.0F, 0.0F}});
+  }
+}
+
+void PlayerModel::moveLeft() {
+  position.y--;
+  for (uint8_t i = 0; i < config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES; i++) {
+	animationsBuffer.push({AnimationState::WALKING_LEFT,
 						   {0.0F,
 							-1.0F + static_cast<float>(i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
 							0.0F}});
   }
 }
 
-void PlayerModel::moveLeft() {
-  position.x++;
-  for (uint8_t i = 0; i < config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES; i++) {
-	animationsBuffer.push({AnimationState::WALKING_LEFT,
-						   {1 + static_cast<float>(-i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
-							0.0F, 0.0F}});
-  }
-}
-
 void PlayerModel::moveRight() {
-  position.x--;
-  for (uint8_t i = 0; i < config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES; i++) {
-	animationsBuffer.push({AnimationState::WALKING_RIGHT,
-						   {-1 + static_cast<float>(i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
-							0.0F, 0.0F}});
-  }
-}
-
-void PlayerModel::moveUpLeft() {
-  position.x++;
   position.y++;
   for (uint8_t i = 0; i < config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES; i++) {
-	animationsBuffer.push({AnimationState::WALKING_UP_LEFT,
-						   {1.0F + static_cast<float>(-i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
+	animationsBuffer.push({AnimationState::WALKING_RIGHT,
+						   {0.0F,
 							1.0F + static_cast<float>(-i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
 							0.0F}});
   }
 }
 
 void PlayerModel::moveUpRight() {
-  position.x--;
+  position.x++;
   position.y++;
   for (uint8_t i = 0; i < config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES; i++) {
 	animationsBuffer.push({AnimationState::WALKING_UP_RIGHT,
-						   {-1 + static_cast<float>(i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
+						   {1.0F + static_cast<float>(-i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
 							1.0F + static_cast<float>(-i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
 							0.0F}});
   }
 }
 
-void PlayerModel::moveDownLeft() {
+void PlayerModel::moveUpLeft() {
   position.x++;
   position.y--;
   for (uint8_t i = 0; i < config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES; i++) {
-	animationsBuffer.push({AnimationState::WALKING_DOWN_LEFT,
+	animationsBuffer.push({AnimationState::WALKING_UP_LEFT,
 						   {1 + static_cast<float>(-i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
+							-1.0F + static_cast<float>(i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
+							0.0F}});
+  }
+}
+
+void PlayerModel::moveDownLeft() {
+  position.x--;
+  position.y--;
+  for (uint8_t i = 0; i < config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES; i++) {
+	animationsBuffer.push({AnimationState::WALKING_DOWN_LEFT,
+						   {-1 + static_cast<float>(i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
 							-1.0F + static_cast<float>(i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
 							0.0F}});
   }
@@ -102,16 +102,16 @@ void PlayerModel::moveDownLeft() {
 
 void PlayerModel::moveDownRight() {
   position.x--;
-  position.y--;
+  position.y++;
   for (uint8_t i = 0; i < config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES; i++) {
 	animationsBuffer.push({AnimationState::WALKING_DOWN_RIGHT,
 						   {-1 + static_cast<float>(i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
-							-1.0F + static_cast<float>(i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
+							1.0F + static_cast<float>(-i) * config::SimulationConfig::PLAYER_MOVE_ANIMATION_TRANSLATION,
 							0.0F}});
   }
 }
 
-void PlayerModel::setKit(const std::string& kitName) {
+void PlayerModel::setKit(const std::string &kitName) {
   kit = kitName;
 }
 
@@ -119,7 +119,7 @@ const sf::Vector3i &PlayerModel::getPosition() const {
   return position;
 }
 
-const std::string& PlayerModel::getKit() const {
+const std::string &PlayerModel::getKit() const {
   return kit;
 }
 

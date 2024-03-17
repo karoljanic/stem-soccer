@@ -44,67 +44,66 @@ PlayerViewDrawer::PlayerViewDrawer() {
   footballer.setScale(config::SimulationConfig::PLAYER_SCALE, config::SimulationConfig::PLAYER_SCALE);
 }
 
-void PlayerViewDrawer::draw(const PlayerModel &playerModel, const sf::Vector3f &origin) {
+std::pair<sf::Sprite, float> PlayerViewDrawer::draw(const PlayerModel &playerModel, const sf::Vector3f &origin) {
   const std::pair<PlayerModel::AnimationState, sf::Vector3f> animationState = playerModel.getAnimationState();
 
   switch (animationState.first) {
-	case PlayerModel::AnimationState::IDLE:
-	  currentAnimationFrameWidth = config::SimulationConfig::PLAYER_NO_WALK_WIDTH;
+	case PlayerModel::AnimationState::IDLE: currentAnimationFrameWidth = config::SimulationConfig::PLAYER_NO_WALK_WIDTH;
 	  footballer.setTexture(game::GameData::getInstance()->assets.getTexture(playerModel.getKit() + "-idle"));
 	  footballer.setTextureRect(sf::IntRect(
 		  currentAnimationFrameWidth * playerModel.getAnimationFrame(), 0,
 		  currentAnimationFrameWidth, config::SimulationConfig::PLAYER_HEIGHT));
 	  break;
-	case PlayerModel::AnimationState::WALKING_UP:
+	case PlayerModel::AnimationState::WALKING_RIGHT:
 	  currentAnimationFrameWidth = config::SimulationConfig::PLAYER_WALK_WIDTH;
 	  footballer.setTexture(game::GameData::getInstance()->assets.getTexture(playerModel.getKit() + "-walk"));
 	  footballer.setTextureRect(sf::IntRect(
 		  currentAnimationFrameWidth * playerModel.getAnimationFrame(), 0,
 		  currentAnimationFrameWidth, config::SimulationConfig::PLAYER_HEIGHT));
 	  break;
-	case PlayerModel::AnimationState::WALKING_DOWN:
+	case PlayerModel::AnimationState::WALKING_LEFT:
 	  currentAnimationFrameWidth = config::SimulationConfig::PLAYER_WALK_WIDTH;
 	  footballer.setTexture(game::GameData::getInstance()->assets.getTexture(playerModel.getKit() + "-walk"));
 	  footballer.setTextureRect(sf::IntRect(
 		  currentAnimationFrameWidth * (playerModel.getAnimationFrame() + 1), 0,
 		  -currentAnimationFrameWidth, config::SimulationConfig::PLAYER_HEIGHT));
 	  break;
-	case PlayerModel::AnimationState::WALKING_LEFT:
+	case PlayerModel::AnimationState::WALKING_UP:
 	  currentAnimationFrameWidth = config::SimulationConfig::PLAYER_NO_WALK_WIDTH;
 	  footballer.setTexture(game::GameData::getInstance()->assets.getTexture(playerModel.getKit() + "-back"));
 	  footballer.setTextureRect(sf::IntRect(
 		  currentAnimationFrameWidth * playerModel.getAnimationFrame(), 0,
 		  currentAnimationFrameWidth, config::SimulationConfig::PLAYER_HEIGHT));
 	  break;
-	case PlayerModel::AnimationState::WALKING_RIGHT:
+	case PlayerModel::AnimationState::WALKING_DOWN:
 	  currentAnimationFrameWidth = config::SimulationConfig::PLAYER_NO_WALK_WIDTH;
 	  footballer.setTexture(game::GameData::getInstance()->assets.getTexture(playerModel.getKit() + "-front"));
 	  footballer.setTextureRect(sf::IntRect(
 		  currentAnimationFrameWidth * playerModel.getAnimationFrame(), 0,
 		  currentAnimationFrameWidth, config::SimulationConfig::PLAYER_HEIGHT));
 	  break;
-	case PlayerModel::AnimationState::WALKING_UP_LEFT:
+	case PlayerModel::AnimationState::WALKING_UP_RIGHT:
 	  currentAnimationFrameWidth = config::SimulationConfig::PLAYER_NO_WALK_WIDTH;
 	  footballer.setTexture(game::GameData::getInstance()->assets.getTexture(playerModel.getKit() + "-back"));
 	  footballer.setTextureRect(sf::IntRect(
 		  currentAnimationFrameWidth * playerModel.getAnimationFrame(), 0,
 		  currentAnimationFrameWidth, config::SimulationConfig::PLAYER_HEIGHT));
 	  break;
-	case PlayerModel::AnimationState::WALKING_UP_RIGHT:
+	case PlayerModel::AnimationState::WALKING_DOWN_RIGHT:
 	  currentAnimationFrameWidth = config::SimulationConfig::PLAYER_WALK_WIDTH;
 	  footballer.setTexture(game::GameData::getInstance()->assets.getTexture(playerModel.getKit() + "-walk"));
 	  footballer.setTextureRect(sf::IntRect(
 		  currentAnimationFrameWidth * playerModel.getAnimationFrame(), 0,
 		  currentAnimationFrameWidth, config::SimulationConfig::PLAYER_HEIGHT));
 	  break;
-	case PlayerModel::AnimationState::WALKING_DOWN_LEFT:
+	case PlayerModel::AnimationState::WALKING_UP_LEFT:
 	  currentAnimationFrameWidth = config::SimulationConfig::PLAYER_WALK_WIDTH;
 	  footballer.setTexture(game::GameData::getInstance()->assets.getTexture(playerModel.getKit() + "-walk"));
 	  footballer.setTextureRect(sf::IntRect(
 		  currentAnimationFrameWidth * (playerModel.getAnimationFrame() + 1), 0,
 		  -currentAnimationFrameWidth, config::SimulationConfig::PLAYER_HEIGHT));
 	  break;
-	case PlayerModel::AnimationState::WALKING_DOWN_RIGHT:
+	case PlayerModel::AnimationState::WALKING_DOWN_LEFT:
 	  currentAnimationFrameWidth = config::SimulationConfig::PLAYER_NO_WALK_WIDTH;
 	  footballer.setTexture(game::GameData::getInstance()->assets.getTexture(playerModel.getKit() + "-front"));
 	  footballer.setTextureRect(sf::IntRect(
@@ -121,6 +120,6 @@ void PlayerViewDrawer::draw(const PlayerModel &playerModel, const sf::Vector3f &
 					static_cast<float>(playerModel.getPosition().z)} + animationState.second);
   footballer.setPosition(isometricCoordinate.x + origin.x, isometricCoordinate.y + origin.y);
 
-  game::GameData::getInstance()->window.draw(footballer);
+  return {footballer, playerModel.getPosition().x + playerModel.getPosition().y};
 }
 } // namespace simulation

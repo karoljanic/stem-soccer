@@ -13,10 +13,10 @@ BallViewDrawer::BallViewDrawer() {
   ball.setScale(config::SimulationConfig::BALL_SCALE, config::SimulationConfig::BALL_SCALE);
 }
 
-void BallViewDrawer::draw(const BallModel &ballModel, const sf::Vector3f &origin) {
+std::pair<sf::Sprite, float> BallViewDrawer::draw(const BallModel &ballModel, const sf::Vector3f &origin) {
   const auto isometricCoordinate = cartesianToIsometric(ballModel.getPosition());
   ball.setPosition(isometricCoordinate.x + origin.x, isometricCoordinate.y + origin.y);
   ball.setRotation(ballModel.getRotation());
-  game::GameData::getInstance()->window.draw(ball);
+  return {ball, ballModel.getPosition().x + ballModel.getPosition().y};
 }
 } // namespace simulation
