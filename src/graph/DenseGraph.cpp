@@ -17,6 +17,17 @@ void DenseGraph::addEdge(uint32_t source, uint32_t destination) {
   edgesNumber++;
 }
 
+void DenseGraph::removeEdge(uint32_t source, uint32_t destination) {
+  if (directed) {
+	adjacencyMatrix[source][destination] = false;
+  } else {
+	adjacencyMatrix[source][destination] = false;
+	adjacencyMatrix[destination][source] = false;
+  }
+
+  edgesNumber--;
+}
+
 std::vector<uint32_t> DenseGraph::getNeighbors(uint32_t vertex) const {
   std::vector<uint32_t> neighbors;
   for (uint32_t i = 0; i < verticesNumber; i++) {

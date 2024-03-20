@@ -16,6 +16,17 @@ void SparseGraph::addEdge(uint32_t source, uint32_t destination) {
   edgesNumber++;
 }
 
+void SparseGraph::removeEdge(uint32_t source, uint32_t destination) {
+  adjacencyList[source].erase(std::remove(adjacencyList[source].begin(), adjacencyList[source].end(), destination),
+							  adjacencyList[source].end());
+  if (!directed) {
+	adjacencyList[destination].erase(std::remove(adjacencyList[destination].begin(), adjacencyList[destination].end(), source),
+									adjacencyList[destination].end());
+  }
+
+  edgesNumber--;
+}
+
 std::vector<uint32_t> SparseGraph::getNeighbors(uint32_t vertex) const {
   return adjacencyList[vertex];
 }
