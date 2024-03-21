@@ -12,7 +12,9 @@ MatchModel::MatchModel(const std::vector<sf::Vector3i> &firstTeamPlayersPosition
 	firstTeamKit{firstTeamKitName},
 	secondTeamKit{secondTeamKitName},
 	ticker{0},
-	generator{std::random_device{}()} {
+	generator{std::random_device{}()},
+	graph{std::make_unique<graph::DenseGraph>(
+		config::SimulationConfig::PITCH_WIDTH * config::SimulationConfig::PITCH_LENGTH, false)} {
 
   if (firstTeamPlayersPositions.size() != config::SimulationConfig::PLAYERS_PER_TEAM ||
 	  secondTeamPlayersPositions.size() != config::SimulationConfig::PLAYERS_PER_TEAM) {

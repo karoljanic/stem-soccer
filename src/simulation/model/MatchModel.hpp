@@ -2,11 +2,13 @@
 
 #include "PlayerModel.hpp"
 #include "BallModel.hpp"
+#include "../../graph/DenseGraph.hpp"
 
 #include <cstdint>
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include <random>
+#include <memory>
 
 namespace simulation {
 class MatchModel {
@@ -20,6 +22,7 @@ class MatchModel {
   uint8_t ticker;
   std::mt19937 generator;
   std::uniform_real_distribution<float> distribution;
+  std::unique_ptr<graph::Graph> graph;
 
  public:
   MatchModel() = default;
