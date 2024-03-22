@@ -8,8 +8,6 @@
 
 namespace game {
 class GameData {
- private:
-  static std::unique_ptr<GameData> gameData;
  public:
   GameData();
   static const std::unique_ptr<GameData>& getInstance();
@@ -20,5 +18,8 @@ class GameData {
   InputManager inputs;
   sf::RenderWindow window;
   sf::Clock clock;
+
+ private:
+  static std::unique_ptr<GameData> gameData;
 };
 } // namespace game

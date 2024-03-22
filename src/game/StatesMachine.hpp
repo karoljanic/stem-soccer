@@ -7,13 +7,6 @@
 
 namespace game {
 class StatesMachine {
- private:
-  std::stack<std::unique_ptr<State>> states;
-  std::unique_ptr<State> newState;
-  bool addStateFlag;
-  bool removeStateFlag;
-  bool replaceStateFlag;
-
  public:
   StatesMachine();
   ~StatesMachine() = default;
@@ -23,5 +16,12 @@ class StatesMachine {
   void replaceState(std::unique_ptr<State> state);
   void processStateChanges();
   const std::unique_ptr<State> &getActiveState();
+
+ private:
+  std::stack<std::unique_ptr<State>> states;
+  std::unique_ptr<State> newState;
+  bool addStateFlag;
+  bool removeStateFlag;
+  bool replaceStateFlag;
 };
 } // namespace game

@@ -6,11 +6,6 @@
 
 namespace game {
 class AssetsManager {
- private:
-  std::map<std::string, sf::Texture> textures;
-  std::map<std::string, sf::Font> fonts;
-//  std::map<std::string, sf::SoundBuffer> sounds;
-
  public:
   AssetsManager() = default;
 
@@ -22,5 +17,10 @@ class AssetsManager {
 
 //  bool loadSound(const std::string &sourceFileName, const std::string &targetName);
 //  const sf::SoundBuffer &getSound(const std::string &name) const;
+
+ private:
+  std::map<std::string, sf::Texture> textures;
+  std::map<std::string, sf::Font> fonts;
+//  std::map<std::string, sf::SoundBuffer> sounds;
 };
 } // namespace game

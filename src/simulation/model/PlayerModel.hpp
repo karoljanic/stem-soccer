@@ -21,13 +21,6 @@ class PlayerModel {
 	WALKING_DOWN_RIGHT
   };
 
- private:
-  sf::Vector3i position;
-  std::string kit;
-  std::queue<std::pair<AnimationState, sf::Vector3f>> animationsBuffer;
-  uint8_t animationFrame{0};
-
- public:
   PlayerModel() = default;
   explicit PlayerModel(const sf::Vector3i &position, const std::string& kitName);
   void update();
@@ -47,5 +40,11 @@ class PlayerModel {
   const std::string& getKit() const;
   std::pair<PlayerModel::AnimationState, sf::Vector3f> getAnimationState() const;
   uint8_t getAnimationFrame() const;
+
+ private:
+  sf::Vector3i position;
+  std::string kit;
+  std::queue<std::pair<AnimationState, sf::Vector3f>> animationsBuffer;
+  uint8_t animationFrame{0};
 };
 }  // namespace simulation

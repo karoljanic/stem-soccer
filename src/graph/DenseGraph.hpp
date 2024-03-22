@@ -6,9 +6,6 @@
 
 namespace graph {
 class DenseGraph : public Graph {
- private:
-  std::vector<std::vector<bool>> adjacencyMatrix;
-
  public:
   DenseGraph() = default;
   DenseGraph(uint32_t verticesNumber, bool isDirected);
@@ -21,5 +18,7 @@ class DenseGraph : public Graph {
   uint32_t getInDegree(uint32_t vertex) const override;
   uint32_t getOutDegree(uint32_t vertex) const override;
 
+ private:
+  std::vector<std::vector<bool>> adjacencyMatrix;
 };
 } // namespace graph

@@ -5,10 +5,6 @@
 
 namespace simulation {
 class BallModel {
- private:
-  sf::Vector3i position;
-  float rotation;
-
  public:
   BallModel() = default;
   explicit BallModel(const sf::Vector3i &initialPosition);
@@ -17,5 +13,9 @@ class BallModel {
   void moveRelative(const sf::Vector3i &displacement);
   const sf::Vector3i& getPosition() const;
   float getRotation() const;
+
+ private:
+  sf::Vector3i position;
+  float rotation;
 };
 }  // namespace simulation

@@ -5,11 +5,6 @@
 
 namespace menu {
 class MenuState : public game::State {
- private:
-  sf::Texture backgroundTexture;
-  sf::Sprite background;
-  std::vector<std::unique_ptr<MenuButton>> buttons;
-
  public:
   MenuState() = default;
   void init() override;
@@ -17,5 +12,10 @@ class MenuState : public game::State {
   void resume() override;
   void update(float dt) override;
   void draw() override;
+
+ private:
+  sf::Texture backgroundTexture;
+  sf::Sprite background;
+  std::vector<std::unique_ptr<MenuButton>> buttons;
 };
 } // namespace menu

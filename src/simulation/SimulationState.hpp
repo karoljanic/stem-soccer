@@ -8,10 +8,6 @@
 
 namespace simulation {
 class SimulationState : public game::State {
- private:
-  MatchModel matchModel;
-  MatchView matchView;
-
  public:
   SimulationState() = default;
   void init() override;
@@ -19,5 +15,9 @@ class SimulationState : public game::State {
   void resume() override;
   void update(float dt) override;
   void draw() override;
+
+ private:
+  MatchModel matchModel;
+  MatchView matchView;
 };
 } // namespace simulation

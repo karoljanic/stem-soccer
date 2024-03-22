@@ -12,18 +12,6 @@
 
 namespace simulation {
 class MatchModel {
- private:
-  std::vector<PlayerModel> firstTeamPlayers;
-  std::vector<PlayerModel> secondTeamPlayers;
-  std::string firstTeamKit;
-  std::string secondTeamKit;
-  BallModel ball;
-
-  uint8_t ticker;
-  std::mt19937 generator;
-  std::uniform_real_distribution<float> distribution;
-  std::unique_ptr<graph::Graph> graph;
-
  public:
   MatchModel() = default;
   explicit MatchModel(const std::vector<sf::Vector3i> &firstTeamPlayersPositions,
@@ -36,6 +24,17 @@ class MatchModel {
   const BallModel &getBall() const;
 
  private:
+  std::vector<PlayerModel> firstTeamPlayers;
+  std::vector<PlayerModel> secondTeamPlayers;
+  std::string firstTeamKit;
+  std::string secondTeamKit;
+  BallModel ball;
+
+  uint8_t ticker;
+  std::mt19937 generator;
+  std::uniform_real_distribution<float> distribution;
+  std::unique_ptr<graph::Graph> graph;
+
   void movePlayers();
 };
 }  // namespace simulation

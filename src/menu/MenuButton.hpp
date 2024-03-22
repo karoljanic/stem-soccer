@@ -6,11 +6,6 @@
 
 namespace menu {
 class MenuButton {
- private:
-  std::unique_ptr<sf::RectangleShape> background;
-  std::unique_ptr<sf::Text> text;
-  std::function<void()> onClick;
-
  public:
   MenuButton(sf::Vector2f centerAnchor,
 			 const std::string &textToDisplay,
@@ -23,5 +18,10 @@ class MenuButton {
 
   void update();
   void draw();
+
+ private:
+  std::unique_ptr<sf::RectangleShape> background;
+  std::unique_ptr<sf::Text> text;
+  std::function<void()> onClick;
 };
 } // namespace menu

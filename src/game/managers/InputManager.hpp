@@ -8,11 +8,6 @@ class InputManager {
  public:
   enum InputState { Down, Pressed, Up };
 
- private:
-  std::map<sf::Keyboard::Key, InputState> keys;
-  std::map<sf::Mouse::Button, InputState> buttons;
-
- public:
   InputManager() = default;
 
   sf::Vector2i getMousePosition(sf::RenderWindow &window) const;
@@ -33,6 +28,10 @@ class InputManager {
   void removeEvent(sf::Mouse::Button btn);
 
   void updateEvents();
+
+ private:
+  std::map<sf::Keyboard::Key, InputState> keys;
+  std::map<sf::Mouse::Button, InputState> buttons;
 };
 
 } // namespace game

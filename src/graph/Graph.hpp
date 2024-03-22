@@ -5,11 +5,6 @@
 
 namespace graph {
 class Graph {
- protected:
-  uint32_t verticesNumber;
-  uint32_t edgesNumber;
-  bool directed;
-
  public:
   Graph() = default;
   Graph(uint32_t vertices, bool isDirected);
@@ -24,5 +19,10 @@ class Graph {
   virtual uint32_t getDegree(uint32_t vertex) const = 0;
   virtual uint32_t getInDegree(uint32_t vertex) const = 0;
   virtual uint32_t getOutDegree(uint32_t vertex) const = 0;
+
+ protected:
+  uint32_t verticesNumber;
+  uint32_t edgesNumber;
+  bool directed;
 };
 } // namespace graph

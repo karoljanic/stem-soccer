@@ -7,9 +7,6 @@
 
 namespace graph {
 class SparseGraph : public Graph {
- private:
-  std::vector<std::vector<uint32_t>> adjacencyList;
-
  public:
   SparseGraph() = default;
   SparseGraph(uint32_t verticesNumber, bool isDirected);
@@ -21,5 +18,8 @@ class SparseGraph : public Graph {
   uint32_t getDegree(uint32_t vertex) const override;
   uint32_t getInDegree(uint32_t vertex) const override;
   uint32_t getOutDegree(uint32_t vertex) const override;
+
+ private:
+  std::vector<std::vector<uint32_t>> adjacencyList;
 };
 } // namespace graph
