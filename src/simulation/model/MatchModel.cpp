@@ -1,13 +1,22 @@
 #include "MatchModel.hpp"
 #include "../../config/SimulationConfig.hpp"
+#include <numeric>
 
 namespace simulation {
 MatchModel::MatchModel(const TeamTactic &firstTeamTactic, const TeamTactic &secondTeamTactic,
-					   const std::string& firstTeamKitName, const std::string& secondTeamKitName,
+					   const std::string &firstTeamKitName, const std::string &secondTeamKitName,
 					   const sf::Vector3i &ballPosition) :
 	ball{ballPosition},
-	firstTeamPlayers{firstTeamTactic.getInitialPlayerPositions().size()},
-	secondTeamPlayers{secondTeamTactic.getInitialPlayerPositions().size()},
+	firstTeamPlayers{std::accumulate(firstTeamTactic.getInitialPlayerPositions().begin(),
+									 firstTeamTactic.getInitialPlayerPositions().end(), 0U,
+									 [](size_t sum, const std::vector<sf::Vector2i> &vec) {
+									   return sum + vec.size();
+									 })},
+	secondTeamPlayers{std::accumulate(secondTeamTactic.getInitialPlayerPositions().begin(),
+									  secondTeamTactic.getInitialPlayerPositions().end(), 0U,
+									  [](size_t sum, const std::vector<sf::Vector2i> &vec) {
+										return sum + vec.size();
+									  })},
 	firstTeamKit{firstTeamKitName},
 	secondTeamKit{secondTeamKitName},
 	ticker{0},
@@ -15,14 +24,22 @@ MatchModel::MatchModel(const TeamTactic &firstTeamTactic, const TeamTactic &seco
 	graph{std::make_unique<graph::DenseGraph>(
 		config::SimulationConfig::PITCH_WIDTH * config::SimulationConfig::PITCH_LENGTH, false)} {
 
-  for (size_t i = 0; i < firstTeamPlayers.size(); i++) {
-	firstTeamPlayers[i].moveAbsolute(firstTeamTactic.getInitialPlayerPositions().at(i));
-	firstTeamPlayers[i].setKit(firstTeamKitName);
+  size_t playerIndex = 0;
+  for (size_t i = 0; i < firstTeamTactic.getInitialPlayerPositions().size(); i++) {
+	for (size_t j = 0; j < firstTeamTactic.getInitialPlayerPositions().at(i).size(); j++) {
+	  firstTeamPlayers[playerIndex].moveAbsolute(firstTeamTactic.getInitialPlayerPositions().at(i).at(j));
+	  firstTeamPlayers[playerIndex].setKit(firstTeamKitName);
+	  playerIndex++;
+	}
   }
 
-  for (size_t i = 0; i < secondTeamPlayers.size(); i++) {
-	secondTeamPlayers[i].moveAbsolute(secondTeamTactic.getInitialPlayerPositions().at(i));
-	secondTeamPlayers[i].setKit(secondTeamKitName);
+  playerIndex = 0;
+  for (size_t i = 0; i < secondTeamTactic.getInitialPlayerPositions().size(); i++) {
+	for (size_t j = 0; j < secondTeamTactic.getInitialPlayerPositions().at(i).size(); j++) {
+	  secondTeamPlayers[playerIndex].moveAbsolute(-secondTeamTactic.getInitialPlayerPositions().at(i).at(j));
+	  secondTeamPlayers[playerIndex].setKit(secondTeamKitName);
+	  playerIndex++;
+	}
   }
 }
 
@@ -40,7 +57,7 @@ void MatchModel::update() {
   ticker++;
   if (ticker == config::SimulationConfig::PLAYER_MOVE_ANIMATION_FRAMES) {
 	ticker = 0;
-	movePlayers();
+//	movePlayers();
   }
 }
 

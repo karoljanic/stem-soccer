@@ -6,12 +6,14 @@
 namespace simulation {
 class TeamTactic {
  public:
-  TeamTactic() = default;
-  explicit TeamTactic(const std::vector<sf::Vector2i>& playerPositions);
+  typedef std::vector<std::vector<sf::Vector2i>> Formation;
 
-  const std::vector<sf::Vector2i>& getInitialPlayerPositions() const;
+  TeamTactic() = default;
+  explicit TeamTactic(const Formation& playerPositions);
+
+  const Formation& getInitialPlayerPositions() const;
 
  private:
-  std::vector<sf::Vector2i> initialPlayerPositions;
+  Formation initialPlayerPositions;
 };
 } // namespace simulation
