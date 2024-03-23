@@ -25,7 +25,6 @@ struct SimulationConfig {
   static constexpr uint16_t PLAYER_HEIGHT = 19;
   static constexpr float PLAYER_SCALE = 2.5F;
 
-  static constexpr uint8_t PLAYERS_PER_TEAM = 5;
   static constexpr uint8_t PLAYER_MOVE_ANIMATION_FRAMES = 5;
   static constexpr float PLAYER_MOVE_ANIMATION_TRANSLATION = 0.2F;
 };

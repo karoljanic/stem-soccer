@@ -2,6 +2,7 @@
 
 #include "PlayerModel.hpp"
 #include "BallModel.hpp"
+#include "TeamTactic.hpp"
 #include "../../graph/DenseGraph.hpp"
 
 #include <cstdint>
@@ -14,8 +15,7 @@ namespace simulation {
 class MatchModel {
  public:
   MatchModel() = default;
-  explicit MatchModel(const std::vector<sf::Vector3i> &firstTeamPlayersPositions,
-					  const std::vector<sf::Vector3i> &secondTeamPlayersPositions,
+  explicit MatchModel(const TeamTactic &firstTeamTactic, const TeamTactic &secondTeamTactic,
 					  const std::string& firstTeamKitName, const std::string& secondTeamKitName,
 					  const sf::Vector3i &ballPosition);
   void update();

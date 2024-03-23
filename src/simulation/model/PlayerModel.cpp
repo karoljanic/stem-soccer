@@ -19,8 +19,19 @@ void PlayerModel::moveAbsolute(const sf::Vector3i &newPosition) {
   position = newPosition;
 }
 
+void PlayerModel::moveAbsolute(const sf::Vector2i &newPosition) {
+  position.x = newPosition.x;
+  position.y = newPosition.y;
+  position.z = 0;
+}
+
 void PlayerModel::moveRelative(const sf::Vector3i &displacement) {
   position += displacement;
+}
+
+void PlayerModel::moveRelative(const sf::Vector2i &displacement) {
+  position.x += displacement.x;
+  position.y += displacement.y;
 }
 
 void PlayerModel::idle() {

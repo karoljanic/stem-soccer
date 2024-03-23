@@ -2,13 +2,12 @@
 #include "../../config/SimulationConfig.hpp"
 
 namespace simulation {
-MatchModel::MatchModel(const std::vector<sf::Vector3i> &firstTeamPlayersPositions,
-					   const std::vector<sf::Vector3i> &secondTeamPlayersPositions,
-					   const std::string &firstTeamKitName, const std::string &secondTeamKitName,
+MatchModel::MatchModel(const TeamTactic &firstTeamTactic, const TeamTactic &secondTeamTactic,
+					   const std::string& firstTeamKitName, const std::string& secondTeamKitName,
 					   const sf::Vector3i &ballPosition) :
 	ball{ballPosition},
-	firstTeamPlayers{config::SimulationConfig::PLAYERS_PER_TEAM},
-	secondTeamPlayers{config::SimulationConfig::PLAYERS_PER_TEAM},
+	firstTeamPlayers{firstTeamTactic.getInitialPlayerPositions().size()},
+	secondTeamPlayers{secondTeamTactic.getInitialPlayerPositions().size()},
 	firstTeamKit{firstTeamKitName},
 	secondTeamKit{secondTeamKitName},
 	ticker{0},
@@ -16,15 +15,13 @@ MatchModel::MatchModel(const std::vector<sf::Vector3i> &firstTeamPlayersPosition
 	graph{std::make_unique<graph::DenseGraph>(
 		config::SimulationConfig::PITCH_WIDTH * config::SimulationConfig::PITCH_LENGTH, false)} {
 
-  if (firstTeamPlayersPositions.size() != config::SimulationConfig::PLAYERS_PER_TEAM ||
-	  secondTeamPlayersPositions.size() != config::SimulationConfig::PLAYERS_PER_TEAM) {
-	throw std::invalid_argument("Invalid number of players");
+  for (size_t i = 0; i < firstTeamPlayers.size(); i++) {
+	firstTeamPlayers[i].moveAbsolute(firstTeamTactic.getInitialPlayerPositions().at(i));
+	firstTeamPlayers[i].setKit(firstTeamKitName);
   }
 
-  for (size_t i = 0; i < config::SimulationConfig::PLAYERS_PER_TEAM; i++) {
-	firstTeamPlayers[i].moveAbsolute(firstTeamPlayersPositions[i]);
-	firstTeamPlayers[i].setKit(firstTeamKitName);
-	secondTeamPlayers[i].moveAbsolute(secondTeamPlayersPositions[i]);
+  for (size_t i = 0; i < secondTeamPlayers.size(); i++) {
+	secondTeamPlayers[i].moveAbsolute(secondTeamTactic.getInitialPlayerPositions().at(i));
 	secondTeamPlayers[i].setKit(secondTeamKitName);
   }
 }

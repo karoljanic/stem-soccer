@@ -25,7 +25,9 @@ class PlayerModel {
   explicit PlayerModel(const sf::Vector3i &position, const std::string& kitName);
   void update();
   void moveAbsolute(const sf::Vector3i &newPosition);
+  void moveAbsolute(const sf::Vector2i &newPosition);
   void moveRelative(const sf::Vector3i &displacement);
+  void moveRelative(const sf::Vector2i &displacement);
   void idle();
   void moveUp();
   void moveDown();
