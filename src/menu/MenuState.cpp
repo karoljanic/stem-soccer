@@ -12,10 +12,7 @@ void MenuState::init() {
   backgroundTexture = game::GameData::getInstance()->assets.getTexture("menu_background");
   background.setTexture(backgroundTexture);
 
-  const float centerX = static_cast<float>(game::GameData::getInstance()->window.getSize().x) / 2;
-  const float centerY = static_cast<float>(game::GameData::getInstance()->window.getSize().y) / 2;
-
-  buttons.push_back(std::make_unique<MenuButton>(sf::Vector2f(centerX, centerY),
+  buttons.push_back(std::make_unique<MenuButton>(sf::Vector2f(0, 0),
 												 "Run Simulation",
 												 config::WindowConfig::MEDIUM_FONT_SIZE,
 												 sf::Color::White,

@@ -4,28 +4,26 @@
 #include <utility>
 
 namespace menu {
-MenuButton::MenuButton(sf::Vector2f centerAnchor,
+MenuButton::MenuButton(sf::Vector2f transitionFromCenter,
 					   const std::string &textToDisplay,
 					   unsigned int fontSize,
 					   sf::Color fontColor,
 					   const std::string &fontName,
 					   float backgroundPadding,
 					   sf::Color backgroundColor,
-					   std::function<void()> onClickFunction) : onClick{std::move(onClickFunction)} {
+					   std::function<void()> onClickFunction) : transition{transitionFromCenter},
+																padding{backgroundPadding},
+																onClick{std::move(onClickFunction)} {
   text = std::make_unique<sf::Text>();
   text->setFont(game::GameData::getInstance()->assets.getFont(fontName));
   text->setCharacterSize(fontSize);
   text->setFillColor(fontColor);
   text->setString(textToDisplay);
-  text->setPosition(
-	  centerAnchor - (sf::Vector2f(text->getGlobalBounds().width / 2, text->getGlobalBounds().height / 2)));
 
   background = std::make_unique<sf::RectangleShape>(
 	  sf::Vector2f(text->getGlobalBounds().width + 2 * backgroundPadding,
 				   text->getGlobalBounds().height + 2 * backgroundPadding));
   background->setFillColor(backgroundColor);
-  background->setPosition(
-	  centerAnchor - sf::Vector2f(text->getGlobalBounds().width / 2 + backgroundPadding, backgroundPadding));
 }
 
 void MenuButton::update() {
@@ -55,6 +53,16 @@ void MenuButton::update() {
 }
 
 void MenuButton::draw() {
+  const float centerX = static_cast<float>(game::GameData::getInstance()->window.getSize().x) / 2;
+  const float centerY = static_cast<float>(game::GameData::getInstance()->window.getSize().y) / 2;
+  const sf::Vector2f centerAnchor = sf::Vector2f(centerX, centerY) + transition;
+
+  text->setPosition(
+	  centerAnchor - (sf::Vector2f(text->getGlobalBounds().width / 2, text->getGlobalBounds().height / 2)));
+
+  background->setPosition(
+	  centerAnchor - sf::Vector2f(text->getGlobalBounds().width / 2 + padding, padding));
+
   game::GameData::getInstance()->window.draw(*background);
   game::GameData::getInstance()->window.draw(*text);
 }

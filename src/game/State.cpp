@@ -11,6 +11,10 @@ void State::handleInput() {
 	  GameData::getInstance()->window.close();
 	}
 
+	if (event.type == sf::Event::Resized) {
+	  GameData::getInstance()->window.setView(sf::View(sf::FloatRect(0, 0, event.size.width, event.size.height)));
+	}
+
 	if (sf::Event::MouseButtonPressed == event.type) {
 	  GameData::getInstance()->inputs.addEvent(event.mouseButton.button);
 	}

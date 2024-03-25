@@ -8,6 +8,7 @@ class Graph {
  public:
   Graph() = default;
   Graph(uint32_t vertices, bool isDirected);
+  virtual ~Graph() = default;
 
   inline uint32_t getVerticesNumber() const { return verticesNumber; }
   inline uint32_t getEdgesNumber() const { return edgesNumber; }

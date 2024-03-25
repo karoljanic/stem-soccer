@@ -20,6 +20,8 @@ class MenuButton {
   void draw();
 
  private:
+  sf::Vector2f transition;
+  float padding;
   std::unique_ptr<sf::RectangleShape> background;
   std::unique_ptr<sf::Text> text;
   std::function<void()> onClick;

@@ -4,8 +4,8 @@
 
 namespace config {
 struct WindowConfig {
-  static constexpr uint16_t WIDTH = 1600;
-  static constexpr uint16_t HEIGHT = 900;
+  static constexpr uint16_t INITIAL_WIDTH = 1600;
+  static constexpr uint16_t INITIAL_HEIGHT = 900;
 
   static constexpr uint16_t SMALL_FONT_SIZE = 15;
   static constexpr uint16_t MEDIUM_FONT_SIZE = 25;

@@ -10,12 +10,11 @@ namespace simulation {
 class MatchView {
  public:
   MatchView() = default;
-  void init(MatchModel* matchModel, const sf::Vector3f &origin);
+  void init(MatchModel* matchModel);
   void draw();
 
  private:
   MatchModel* matchModelPtr;
-  sf::Vector3f worldOrigin;
   StadiumViewDrawer stadiumViewDrawer;
   PlayerViewDrawer playerViewDrawer;
   BallViewDrawer ballViewDrawer;
