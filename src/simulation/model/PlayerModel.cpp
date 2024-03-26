@@ -2,8 +2,10 @@
 #include "../../config/SimulationConfig.hpp"
 
 namespace simulation {
-PlayerModel::PlayerModel(const sf::Vector3i &initialPosition, const std::string &kitName) :
-	position{initialPosition}, kit{kitName} {
+PlayerModel::PlayerModel(const sf::Vector3i &initialPosition,
+						 const PlayerStats &playerStats,
+						 const std::string &kitName) :
+	position{initialPosition}, stats{playerStats}, kit{kitName} {
 
 }
 
@@ -122,12 +124,20 @@ void PlayerModel::moveDownRight() {
   }
 }
 
+void PlayerModel::setStats(const PlayerStats &playerStats) {
+  stats = playerStats;
+}
+
 void PlayerModel::setKit(const std::string &kitName) {
   kit = kitName;
 }
 
 const sf::Vector3i &PlayerModel::getPosition() const {
   return position;
+}
+
+const PlayerStats &PlayerModel::getStats() const {
+  return stats;
 }
 
 const std::string &PlayerModel::getKit() const {
